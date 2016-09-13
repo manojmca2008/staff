@@ -1,6 +1,6 @@
 window.Staff ={} ;
 Staff.version=1;
-window.apiUrl = "https://demoapi.munchado.com/wapi";
+window.apiUrl = "http://munch-local.com/wapi";
 authenticationToken();
 function getToken(){
     $.ajax({
@@ -59,8 +59,9 @@ Staff.getRestaurantList=function (){
         dataType: 'json',
         success: function(data) {
             if(data.length > 0){
+                options +='<option value="">Select Restaurant</option>';
              $.each(data,function(item,value){        
-                   options +='<option value="'+value.id+'">'+value.restaurant_name+'</option>';        
+                   options +='<option value="'+value.id+'">'+value.restaurant_name+' - '+value.address+'</option>';        
               });
             }
             $("#rest-list").empty().html(options);
@@ -181,11 +182,19 @@ $( "#register-popup" ).click(function() {
     Staff.inputFormatter();
     $(".error-message").addClass("hide");
     $(".error-message-dym").addClass("hide");
+    $("input[name=first_name]").val('');
+    $("input[name=last_name]").val('');
+    $("input[name=email]").val('');
+    $("input[name=phone]").val('');
+    $("input[name=password]").val('');
+    $("input[name=loyality_code]").val('');
 });
 $( "#login-popup" ).click(function() {
     $(".error-message-login").addClass("hide");
     $(".error-message-password").addClass("hide");
     $(".error-message-login-dym").addClass("hide");
+    $("input[name=login_email]").val('');
+    $("input[name=login_password]").val('');
 });
 Staff.validateFirstName = function(){
     var hasError = false;
@@ -320,6 +329,7 @@ Staff.inputFormatter = function(){
 Staff.customerList = function(page){
     $.jStorage.set("page", page);
     var month = ($('#month').val()) ? $('#month').val() : '';
+    
     $.ajax({
         url:apiUrl+'/servers/customersList?token='+$.jStorage.get('oauth.token')+'&month='+month+'&page='+page,
         cache: false,
@@ -370,6 +380,7 @@ Staff.customerList = function(page){
 }
 Staff.customerListPagination = function(page){
     var month = ($('#month').val()) ? $('#month').val() : '';
+   
     $.ajax({
         url:apiUrl+'/servers/customersList?token='+$.jStorage.get('oauth.token')+'&month='+month+'&page='+page,
         cache: false,
