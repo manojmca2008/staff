@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Dine &amp; More Staff Srogram</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jstorage.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script type="text/javascript">
+   if($.jStorage.get('isLoggedIn') && $.jStorage.get('isLoggedIn') == true){
+      window.location.href = 'stats.html';
+   }
+</script>
+</head>
+<body>
+    <main class="col-xs-12">
+        <section class="firstSection row">
+            <div class="w960">
+                <div class="container-fluid">
+                    <div class="row">
+                        <nav class="navigation">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#"><img src="images/dnmstaffprogram.png" alt="D &amp; M Stafr Program" class="logoImg"></a>
+                            </div>
+
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#">Dine &amp; More</a></li>
+                                    <li><a href="#">Munch Ado</a></li>
+                                    <li class="w50 hidden-xs"></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#myModal" id="register-popup">Register</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#myModal2" id="login-popup">or Sign In</a></li>
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </nav>
+                    </div>
+                    <div class="row text-center">
+                        <h1 class="earnExtraMoneyTxt">Earn Extra Money While <br class="hidden-xs hidden-md hidden-lg">You Work</h1>
+                        <img src="images/munchadologo.png" alt="Presented By Munchado Logo" class="munchadoLogo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secondSection row">
+            <div class="w960">
+                <div class="container-fluid">
+                    <h1 class="text-center whatIsDineNMore">What is Dine &amp; More?</h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="para1">Dine &amp; More is how your restaurant rewards its customer’s loyalty. A branded Dine & More program automatically recognizes and rewards customers for their dining experiences. </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="para1">When they register, they start earning points for interacting with your restaurant, which they can use towards exclusive specials and free food.</p>
+                        </div>
+                        <div class="container-fluid">
+                            <img src="images/mobiles-img.png" alt="" class="mobilesImg img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="thirdSection row">
+            <div class="w960">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="whatIsDineNMore">How Does the Dine &amp; More Server Appreciation Program Work?</h1>
+                            <p class="para1">
+                                When your restaurant signs up for a Dine &amp; More loyalty program, you and your fellow staff members receive promotional materials. Once you’re trained on
+                                Dine &amp; More, you can begin presenting it to your restaurant’s customers.
+                            </p>
+                            <div class="blackBox">
+                                You compete for cash rewards against your fellow servers in your restaurant and across New York City every month and annually.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="fourthSection row">
+            <div class="w960">
+                <div class="container-fluid text-center white">
+                    <div class="row">
+                        <h1 class="whatIsDineNMore">Earn Special Rewards </h1>
+                        <p>Register more customers faster than your fellow servers to unlock cash rewards.</p>
+                        <h2 class="dNMStaffAprdiation">Dine &amp; More Staff Appreciation Rewards at Your Restaurant </h2>
+                    </div>
+                    <div class="row">
+                        <div class="row marNonMob">
+                            <div class="col-md-6">
+                                <div class="winOfferBox">
+                                    <h3>server superstar</h3>
+                                    <p>Register 100+ customers every month to keep earning $500 per month.</p>
+                                    <div class="priceDiv bgColorOrange">
+                                        Win $ 2,500
+                                        <img src="images/left-offer-img-orange.png" alt="" class="leftOfferImg">
+                                        <img src="images/right-offer-img-orange.png" alt="" class="righttOfferImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="winOfferBox">
+                                    <h3>server superstar</h3>
+                                    <p>Register 100+ customers every month to keep earning $500 per month.</p>
+                                    <div class="priceDiv bgColorVoilet">
+                                        Win $ 2,500
+                                        <img src="images/left-offer-img-voilet.png" alt="" class="leftOfferImg">
+                                        <img src="images/right-offer-img-voilet.png" alt="" class="righttOfferImg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">&nbsp;<br>&nbsp;</div>
+                    <div class="row">
+                        <h2 class="dNMStaffAprdiation">Annual New York City Rewards 2016</h2>
+                    </div>
+                    <div class="row">
+                        <div class="row marNonMob">
+                            <div class="col-md-4">
+                                <div class="winOfferBox">
+                                    <h3>Local Hero 2016*</h3>
+                                    <p>Register the most customers in New York City every month to earn $2,500.</p>
+                                    <div class="priceDiv bgColorGreen">
+                                        Win $ 2,500
+                                        <img src="images/left-offer-img-green.png" alt="" class="leftOfferImg">
+                                        <img src="images/right-offer-img-green.png" alt="" class="righttOfferImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="winOfferBox">
+                                    <h3>talent scout 2016</h3>
+                                    <p>Register the customer who refers the most friends to earn $2,500.</p>
+                                    <div class="priceDiv bgColorRed">
+                                        Win $ 2,500
+                                        <img src="images/left-offer-img-red.png" alt="" class="leftOfferImg">
+                                        <img src="images/right-offer-img-red.png" alt="" class="righttOfferImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="winOfferBox">
+                                    <h3>king maker 2016</h3>
+                                    <p>Register the customer who earns the most loyalty points in a year to earn $5,000.</p>
+                                    <div class="priceDiv bgColorBlue">
+                                        Win $ 2,500
+                                        <img src="images/left-offer-img-blue.png" alt="" class="leftOfferImg">
+                                        <img src="images/right-offer-img-blue.png" alt="" class="righttOfferImg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <em class="alfaHalf">*must exceed at least 100 registrations</em>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="fifthSection row">
+            <div class="leftDiv col-sm-6 col-xs-12">
+                <div class="getStartedDiv">
+                    <h1 class="whatIsDineNMore">Get Started <br>at Your Restaurant Today </h1>
+                    <p>Set up a time for a Munch Ado representative to meet your restaurant’s owner or manager.</p>
+                    <div><a href="#">Contact Us</a></div>
+                </div>
+            </div>
+            <div class="rightDiv col-sm-6  col-xs-12">
+                <div class="pull-left getStartedDiv">
+                    <h1 class="whatIsDineNMore">Request <br>an Orientation</h1>
+                    <p>Learn the ins and outs of Dine & More to get your customers excited about joining and ordering. </p>
+                    <div><a href="#">Contact Us</a></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modalHeader">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title modalTitle">Join the Dine &amp; More Server Appreciation Program to compete for cash rewards. </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="registrationDiv">
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">Recipient:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="first_name" id="first_name">
+                                <p class="error-message new-location-msg hide">Sorry, We don't talk to strangers</p>
+                            </div>
+                            <div class="col-sm-4"><input type="text" class="form-control" name="last_name" id="last_name"></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">Select Your Restaurant</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="rest-list"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">Email Address <br>(Acts as yout login)</label>
+                            </div>
+                            <div class="col-sm-8"><input type="text" class="form-control" name="email" id="email"><p class="error-message new-location-msg hide">Hey, you forgot something</p></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">Phone Number<br><small class="size12">(We will send you important updates)</small></label>
+                            </div>
+                            <div class="col-sm-8"><input type="text" class="form-control" name="phone" id="phone"><p class="error-message new-location-msg hide">We promise; No prank calls</p></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">Password<br>(Minimum 6 digits)</label>
+                            </div>
+                            <div class="col-sm-8"><input type="password" class="form-control" name="password" id="password"><p class="error-message new-location-msg hide"></p></div>
+                        </div>
+                        <div class="row">&nbsp;</div>
+                        <div class="row text-center form-group"><b> Enter the unique code on your set of membership cards</b></div>
+                        <div class="row text-center form-group">
+                            <div class="col-sm-4 col-xs-2 text-right"><label><img src="images/captcha-img.jpg" alt="" class="captchaImg"></label></div>
+                            <div class="col-md-4 col-sm-6 col-xs-10">
+                                <input type="text" class="form-control" name="loyality_code" id="loyality_code"><p class="error-message new-location-msg hide">Loyality Code can not be empty</p>
+                            </div>
+                        </div>
+                        <div class="row text-center form-group">
+                            By registering, you accept our <a href="#" class="tnc">terms and conditions</a>
+                        </div>
+                        <div class="row text-center">
+                            <p class="error-message-dym hide"></p>
+                        </div>
+                        <div class="row text-center">
+                            &nbsp;<br>
+                            <img src="images/processing.gif" alt="" class="processingImg hide">
+                        </div>
+                        <div class="row text-center">
+                            &nbsp;<br>
+                            <button type="submit" class="registerNowBtn registerBtn">Register Now</button>
+                        </div>
+                        <div class="row text-center">
+                            &nbsp;
+                        </div>
+                        <div class="row text-center form-group">
+                            Already registered? <a href="#" class="tnc" id="sign_In">Sign in here</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer modalFooter">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- ////////////////////////////////////////// -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modalHeader">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title modalTitle">Sign In </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="registrationDiv">
+
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">User Name</label>
+                            </div>
+                            <div class="col-sm-8"><input type="text" name="login_email" id="email" class="form-control"><p class="error-message-login new-location-msg hide">Hey, you forgot something</p></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">Password</label>
+                            </div>
+                            <div class="col-sm-8"><input type="password" class="form-control" name="login_password" id="password"><p class="error-message-login new-location-msg hide"></p></div>
+                        </div>
+                        <div class="row text-center">
+                            <p class="error-message-login-dym hide"></p>
+                        </div>
+                        <div class="row text-center">&nbsp;<br>
+                            <img src="images/processing.gif" alt="" class="processingImg hide">
+                            </div>
+                            <div class="row text-center">
+                                &nbsp;<br>
+                                <button type="submit" class="registerNowBtn loginBtn">Sign In</button>
+                            </div>
+                            <div class="row text-center">
+                                &nbsp;
+                            </div>
+                            <div class="row text-center form-group">
+                                New User? <a href="#" class="tnc" id="register_Now">Register Now</a>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer modalFooter">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- ////////////////////////////////////////// -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modalHeader">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title modalTitle">Registration Confirmation </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="registrationDiv text-center">
+                        <p class="modalPara">
+                            Thank you for registering. You can now compete with your fellow servers at your restaurant and citywide for cash rewards as you register diners for your restaurant’s
+                            Dine & More program.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer modalFooter">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jstorage.js"></script>
+    <script type="text/javascript" src="js/jquery.formatter.min.js"></script>
+    <script type="text/javascript" src="js/utility.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#register_Now").click(function () {
+                $('#myModal2').modal('hide');
+                setTimeout(function () {
+                    $("#myModal").modal('show')
+                }, 800);
+            });
+            $("#sign_In").click(function () {
+                $('#myModal').modal('hide');
+                
+                setTimeout(function () {
+                    $("#myModal2").modal('show')
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
