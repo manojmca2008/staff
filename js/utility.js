@@ -76,11 +76,12 @@ Staff.registration=function (){
         var loyalty_code = $("input[name=loyality_code]").val();
     }
     var hasError = Staff.validateFirstName();
-        hasError1 = Staff.validateEmail();
-        hasError2 = Staff.validatePhone();
-        hasError3 = Staff.validateLoyaltyCode();
-        hasError4 = Staff.validatePassword();
-     if(hasError || hasError1 || hasError2 || hasError3 || hasError4) {
+        hasError1 = Staff.validateRestaurantName();
+        hasError2 = Staff.validateEmail();
+        hasError3 = Staff.validatePhone();
+        hasError4 = Staff.validateLoyaltyCode();
+        hasError5 = Staff.validatePassword();
+     if(hasError || hasError1 || hasError2 || hasError3 || hasError4 || hasError5) {
          return false;
      }
      $('.processingImg').removeClass('hide');
@@ -179,7 +180,6 @@ $( ".loginBtn" ).click(function() {
   Staff.login();
 });
 $( "#register-popup" ).click(function() {
-    Staff.inputFormatter();
     $(".error-message").addClass("hide");
     $(".error-message-dym").addClass("hide");
     $("input[name=first_name]").val('');
@@ -208,6 +208,20 @@ Staff.validateFirstName = function(){
     }
     var value = $.trim(firstName.val());
     $("input[name=first_name]").val(value);
+    return hasError;
+};
+Staff.validateRestaurantName = function(){
+    var hasError = false;
+    var restName = $("select[name=rest-name]");
+    var errorMessage = restName.closest("div").find(".error-message");
+    if ($.trim(restName.val()) === "") {
+        errorMessage.removeClass("hide");
+        hasError = true;
+    } else {
+        errorMessage.addClass("hide");
+    }
+    var value = $.trim(restName.val());
+    restName.val(value);
     return hasError;
 };
 Staff.validateEmail = function(){
@@ -309,9 +323,9 @@ Staff.validateLoyaltyCode = function(){
     $("input[name=loyalityCode]").val(value);
     return hasError;
 };
-
 $("input[name=first_name]").on('blur', $.proxy(Staff.validateFirstName, Staff));
 $("input[name=email]").on('blur', $.proxy(Staff.validateEmail, Staff));
+$("select[name=rest-name]").on('blur', $.proxy(Staff.validateRestaurantName, Staff));
 $("input[name=password]").on('blur', $.proxy(Staff.validatePassword, Staff));
 $("input[name=login_password]").on('blur', $.proxy(Staff.validateLoginPassword, Staff));
 $("input[name=login_email]").on('blur', $.proxy(Staff.validateloginEmail, Staff));
@@ -413,3 +427,12 @@ Staff.customerListPagination = function(page){
         error: function() {}
     });
 }
+$('#login_password').keyup(function(e) {
+    var key = e.which;
+    if (key == 13) {
+    Staff.login();
+    }
+});
+setTimeout(function(){
+   Staff.inputFormatter();
+ },1000);
