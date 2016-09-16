@@ -433,6 +433,3 @@ $('#login_password').keyup(function(e) {
     Staff.login();
     }
 });
-setTimeout(function(){
-   Staff.inputFormatter();
- },1000);
