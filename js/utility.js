@@ -156,6 +156,36 @@ Staff.login=function (){
         }
     });
 };
+Staff.enrollCustomers=function (){
+    var hasError = Staff.validateEnrollEmail();
+     if(hasError) {
+         return false;
+     }
+    $('.processingImg').removeClass('hide');
+    var emails = {
+            'email': $("input[name=enroll_email]").val(),
+        };
+    $.ajax({
+        url:apiUrl+'/servers/enrollcustomers',
+        data: JSON.stringify(emails),
+        contentType: "application/json; charset=utf-8",
+        type: 'post',
+        success: function(response) {
+            if(response.success == true){
+                $('.processingImg').addClass('hide');
+                $("#myModal4").modal('hide')
+                $("#myModal5").modal('show')
+            }
+        },
+        error: function(response) {
+            $('.processingImg').addClass('hide');
+            response = $.parseJSON(response['responseText']);
+            var error = response["error"];
+            $('.error-message-login-dym').removeClass('hide');
+            $('.error-message-login-dym').empty().html(error);
+        }
+    });
+};
 Staff.logout=function (){
     $.ajax({
         url:apiUrl+'/servers/logout?token='+$.jStorage.get('oauth.token'),
@@ -179,6 +209,7 @@ $( ".registerBtn" ).click(function() {
 $( ".loginBtn" ).click(function() {
   Staff.login();
 });
+
 $( "#register-popup" ).click(function() {
     $(".error-message").addClass("hide");
     $(".error-message-dym").addClass("hide");
@@ -195,6 +226,11 @@ $( "#login-popup" ).click(function() {
     $(".error-message-login-dym").addClass("hide");
     $("input[name=login_email]").val('');
     $("input[name=login_password]").val('');
+});
+$( "#enroll-popup" ).click(function() {
+    $(".error-message").addClass("hide");
+    //$(".error-message-login-dym").addClass("hide");
+    $("input[name=enroll_email]").val('');
 });
 Staff.validateFirstName = function(){
     var hasError = false;
@@ -290,6 +326,24 @@ Staff.validateloginEmail = function(){
             hasError = true;
         } else {
             email.closest("div").find(".error-message-login").addClass("hide");
+        }
+    }
+    return hasError;
+};
+Staff.validateEnrollEmail = function(){
+    var hasError = false,
+        email = $("input[name=enroll_email]");
+    var emailFormat = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+    if ($.trim(email.val()) === "") {
+        email.closest("div").find(".error-message").removeClass("hide").html('Hey, you forgot something');
+        hasError = true;
+    } else {
+        if (!emailFormat.test(email.val())) {
+            email.closest("div").find(".error-message").removeClass("hide").html('That don\'t look like any e-mail I ever seen. Maybe the "@" or the "." are in the wrong spot. This isn\'t cubism, put things where they belong!');
+            hasError = true;
+        } else {
+            email.closest("div").find(".error-message").addClass("hide");
         }
     }
     return hasError;
@@ -433,3 +487,10 @@ $('#login_password').keyup(function(e) {
     Staff.login();
     }
 });
+Staff.getDaysFromTwoDates = function(firstDate){
+    var date1 = new Date(firstDate);
+    var date2 = new Date();
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+    alert(diffDays);
+}

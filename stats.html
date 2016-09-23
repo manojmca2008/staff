@@ -54,9 +54,9 @@
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="hidden-xs hidden-sm"><a href="https://munchado.com/" target="_blank"><img src="images/munchadologo2.png" alt="" class="munchadoLogo2"></a></li>
-                                    <li class="marNonMob"><a href="#">Dine &amp; More</a></li>
-                                    <li><a href="#">Munch Ado</a></li>
-                                    <li><a href="#" class="enroll" data-toggle="modal" data-target="#">Enroll More Customers</a></li>
+                                    <li class="marNonMob"><a href="https://munchado.com/loyalty-points" target="_blank">Dine &amp; More</a></li>
+                                    <li><a href="https://munchado.com" target="_blank">Munch Ado</a></li>
+                                    <li><a href="#" class="enroll" data-toggle="modal" data-target="#myModal4" id="enroll-popup">Enroll More Customers</a></li>
                                     <li><a href="#" class="logoutBtn"> Sign Out</a></li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->
@@ -73,9 +73,9 @@
                                 <!-- Nav tabs -->
                                 <div class="tabListContainer">
                                     <ul class="navTabs" role="tablist">
-                                        <li role="presentation"><a href="#Leaderboard11" aria-controls="Leaderboard" role="tab" data-toggle="">Leaderboard</a></li>
+                                        <li role="presentation"><a href="#Leaderboard" aria-controls="Leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
                                         <li role="presentation" class="active"><a href="#YourStats" aria-controls="Your Stats" role="tab" data-toggle="tab">Your Stats</a></li>
-                                        <li role="presentation"><a href="#PastWinners11" aria-controls="Past Winners" role="tab" data-toggle="">Past Winners</a></li>
+                                        <li role="presentation"><a href="#PastWinners" aria-tabcontrols="Past Winners" role="tab" data-toggle="tab">Past Winners</a></li>
                                     </ul>
                                 </div>
                                 <div class="radioButtonDIv">
@@ -92,7 +92,7 @@
                                             <label class="radioLabel" for="optionsRadios2"><span></span></label>
                                             <div class="dropdown">
                                                 <select class="form-control" id="month" disabled="disabled">
-                                                    <option>Select Month</option>
+                                                    <option value="">Select Month</option>
                                                     <option value='8'>August</option>
                                                     <option value='9'>September</option>
                                                     <option value='10'>October</option>
@@ -141,7 +141,7 @@
                                                                             </tr>
                                                                             <tr class="tableFooter">
                                                                                 <td>You</td>
-                                                                                <td>65</td>
+                                                                                <td>43</td>
                                                                                 <td>57 to go</td>
                                                                             </tr>
                                                                         </table>
@@ -612,18 +612,16 @@
                 <div class="modal-body">
                     <div class="registrationDiv text-center">
                         <p>Enter the customer’s email address (separate multiple emails with commas)</p>
-                        <form>
                             <div class="form-group row">
-                                <div class="col-xs-10 col-xs-offset-1"><input type="text" class="form-control" id="recipient-name3"></div>
+                                <div class="col-xs-10 col-xs-offset-1"><input type="text" class="form-control" name="enroll_email" id="enroll_email"><p class="error-message new-location-msg hide">Hey, you forgot something</p></div>
                             </div>
                             <div class="row text-center">
                                 &nbsp;<br>&nbsp;<br>
-                                <button type="submit" class="registerNowBtn">SUBMIT</button>
+                                <button type="submit" class="registerNowBtn enrollBtn">SUBMIT</button>
                             </div>
                             <div class="row text-center">
                                 &nbsp;
                             </div>
-                        </form>
                     </div>
                 </div>
                 <div class="modal-footer modalFooter">
@@ -685,6 +683,9 @@
             if (this.value == 'option2') {
                 $("#month").prop("disabled", false);
             }
+        });
+        $( ".enrollBtn" ).click(function() {
+          Staff.enrollCustomers();
         });
     </script>
 </body>
