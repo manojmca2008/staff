@@ -414,7 +414,7 @@ Staff.customerList = function(page){
              $('.paginationBox').removeClass('hide');
              $('.no-record').html('');        
                    tbody +='<tr><td>'+ value['s_no'] +'</td>';
-                               tbody +='<td>'+ value['customer'] +'</td>';
+                               tbody +='<td class="text-capitalize">'+ value['customer'] +'</td>';
                                tbody +='<td>'+ value['join_date'] +'</td>';
                                tbody +='<td>'+ value['first_transaction'] +'</td>';
                                //tbody +='<td>'+ value['referals'] +'</td>';
@@ -465,7 +465,7 @@ Staff.customerListPagination = function(page){
              $('.paginationBox').removeClass('hide');
              $('.no-record').html('');        
                    tbody +='<tr><td>'+ value['s_no'] +'</td>';
-                               tbody +='<td>'+ value['customer'] +'</td>';
+                               tbody +='<td class="text-capitalize">'+ value['customer'] +'</td>';
                                tbody +='<td>'+ value['join_date'] +'</td>';
                                tbody +='<td>'+ value['first_transaction'] +'</td>';
                                //tbody +='<td>'+ value['referals'] +'</td>';
@@ -492,5 +492,137 @@ Staff.getDaysFromTwoDates = function(firstDate){
     var date2 = new Date();
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-    alert(diffDays);
+    return diffDays;
+}
+Staff.leaderboard = function(page){
+    var d = new Date();
+    var m = d.getMonth();
+    var month = ($('#leader-month').val()) ? $('#leader-month').val() : m + 1;
+    $.ajax({
+        url:apiUrl+'/servers/leaderboard?token='+$.jStorage.get('oauth.token')+'&month='+month,
+        cache: false,
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+            var tbody = "";
+            if(response.superstar.length > 0){
+             $.each(response.superstar,function(item,value){        
+                   tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
+                               tbody +='<td>'+ value['total_customers'] +'</td>';
+                               if(value['total_customers'] > 100){
+                                    tbody +='<td>$500</td></tr>';
+                               }else{
+                                tbody +='<td></td></tr>';
+                               } 
+              });
+             tbody +='<tr class="tableFooter"><td>You</td>';
+                 tbody +='<td>You</td>';
+                 tbody +='<td>57 to go</td>';
+                 tbody +='<td>43</td></tr>';                                                                                             
+            }else{
+                $('.no-record').empty().html('No Record Found');
+            }
+            $('#leader-superstar').empty().append(tbody);
+             var tbody = "";
+            if(response.speedster.length > 0){
+             $.each(response.speedster,function(item,value){        
+                   tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
+                               tbody +='<td>Joined '+ Staff.getDaysFromTwoDates(value['date']) +' days ago</td>';
+                               tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
+              });
+             tbody +='<tr class="tableFooter"><td>You</td>';
+                 tbody +='<td>You</td>';
+                 tbody +='<td>Joined 21 days ago</td>';
+                 tbody +='<td>43</td></tr>';                                                                                             
+            }else{
+                $('.no-record').empty().html('No Record Found');
+            }
+            $('#leader-speedster').empty().append(tbody);
+            var tbody = "";
+            if(response.local_hero.length > 0){
+             $.each(response.local_hero,function(item,value){        
+                   tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
+                               tbody +='<td>'+ value['restaurant_name'] +'</td>';
+                               tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
+              });
+             tbody +='<tr class="tableFooter">';
+                 tbody +='<td>You</td>';
+                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>';
+                 tbody +='<td>43</td></tr>';                                                                                             
+            }else{
+                $('.no-record').empty().html('No Record Found');
+            }
+            $('#leader-hero').empty().append(tbody);
+            var tbody = "";
+            if(response.talent_scout.length > 0){
+             $.each(response.talent_scout,function(item,value){        
+                   tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
+                               tbody +='<td>'+ value['restaurant_name'] +'</td>';
+                               tbody +='<td>'+ value['total_referals'] +'</td></tr>';     
+              });
+             tbody +='<tr class="tableFooter">';
+                 tbody +='<td>You</td>';
+                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>';
+                 tbody +='<td>43</td></tr>';                                                                                             
+            }else{
+                $('.no-record').empty().html('No Record Found');
+            }
+            $('#leader-scout').empty().append(tbody);
+            var tbody = "";
+            if(response.king_maker.length > 0){
+             $.each(response.king_maker,function(item,value){        
+                   tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
+                               tbody +='<td>'+ value['restaurant_name'] +'</td>';
+                               tbody +='<td>'+ value['total_points'] +'</td></tr>';     
+              });
+             tbody +='<tr class="tableFooter">';
+                 tbody +='<td>You</td>';
+                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>';
+                 tbody +='<td>43</td></tr>';                                                                                             
+            }else{
+                $('.no-record').empty().html('No Record Found');
+            }
+            $('#leader-king').empty().append(tbody);
+            var twinners = "";
+            twinners +='<h2 class="heading2 serverApp text-left">Server Appreciation Program at Your Restaurant</h2>';
+            twinners +='<div class="table-responsive">';
+            twinners +='<table class="table leaderBoardTable">';
+            if(response.king_maker.length > 0){
+             $.each(response.past_winners,function(item,value){        
+                   if(value['reward'] == 'superstar'){
+                      var cclass = 'bgColorOrange';
+                      var amount = '$500';
+                   }
+                   if(value['reward'] == 'speedster'){
+                      var cclass = 'bgColorVoilet';
+                      var amount = '$1000';
+                   }
+                   if(value['reward'] == 'local_hero'){
+                      var cclass = 'bgColorGreen';
+                      var amount = '$2500';
+                   }
+                   if(value['reward'] == 'talent_scout'){
+                      var cclass = 'bgColorRed';
+                      var amount = '$2500';
+                   }
+                   if(value['reward'] == 'king_maker'){
+                       var cclass = 'bgColorBlue';
+                       var amount = '$2500';
+                   }
+                   twinners +='<thead><tr><td class="tableHeader '+cclass+'"><div class="pull-left">SERVER '+ value['reward'] +'</div><div class="pull-right">'+ amount +'</div></td></tr></thead>';
+                   twinners +='<tbody><tr><td><div class="table-responsive"><table class="table table-striped innerTable">';
+                   twinners +='<tr><td class="col-xs-6">'+ value['server_name'] +'</td>';
+                   twinners +='<td class="col-xs-2">'+ value['earning'] +'</td>';
+                   twinners +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
+                   twinners +='<tr class="tableFooter">';
+                   twinners +='<td colspan="3">You reached 43 at the end of the competition.</td></tr></table></div></td></tr></tbody>';
+              });
+                   twinners +='</table></div>';                                                                                                
+            }else{
+                $('.no-record').empty().html('No Record Found');
+            }
+            $('#past-winners').empty().append(twinners);
+        },
+        error: function() {}
+    });
 }

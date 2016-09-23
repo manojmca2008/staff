@@ -22,7 +22,7 @@
     <script type="text/javascript">
         if ($.jStorage.get('isLoggedIn') && $.jStorage.get('isLoggedIn') == true) {
             $(document).ready(function () {
-                //$("#month").prop("disabled", true);
+                Staff.leaderboard();
                 Staff.customerList(1);
                 $(".logoutBtn").click(function () {
                     Staff.logout();
@@ -123,27 +123,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-6">Marty Mc Fly</td>
-                                                                                <td class="col-xs-2">112</td>
-                                                                                <td class="col-xs-4"><b>$500</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Emmett Brown</td>
-                                                                                <td>65</td>
-                                                                                <td><b></b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Biff Tannen</td>
-                                                                                <td>57</td>
-                                                                                <td><b></b></td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td>You</td>
-                                                                                <td>43</td>
-                                                                                <td>57 to go</td>
-                                                                            </tr>
+                                                                        <table class="table table-striped innerTable" id="leader-superstar">
                                                                         </table>
                                                                     </div>
                                                                 </td>
@@ -167,27 +147,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-5">Jennifer Parker</td>
-                                                                                <td class="col-xs-4"><small>Joined 7 days ago</small></td>
-                                                                                <td class="col-xs-3"><b>88</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Lorraine Baines</td>
-                                                                                <td><small>Joined 21 days ago</small></td>
-                                                                                <td><b>75</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Goldie Wilson</td>
-                                                                                <td><small>Joined 21 days ago</small></td>
-                                                                                <td><b>55</b></td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td>You</td>
-                                                                                <td><small>Joined 21 days ago</small></td>
-                                                                                <td>43</td>
-                                                                            </tr>
+                                                                        <table class="table table-striped innerTable" id="leader-speedster">
                                                                         </table>
                                                                     </div>
                                                                 </td>
@@ -215,27 +175,8 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-5">Marty Mc Fly</td>
-                                                                                <td class="col-xs-4"><small>Basera Indian Resto</small></td>
-                                                                                <td class="col-xs-3"><b>88</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Emmett Brown</td>
-                                                                                <td><small>Il Vicoleto</small></td>
-                                                                                <td><b>75</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Biff Tannen</td>
-                                                                                <td><small>Parikrama</small></td>
-                                                                                <td><b>55</b></td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td>You</td>
-                                                                                <td></td>
-                                                                                <td>43</td>
-                                                                            </tr>
+                                                                        <table class="table table-striped innerTable" id="leader-hero">
+                                                                            
                                                                         </table>
                                                                     </div>
                                                                 </td>
@@ -259,27 +200,8 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-5">Jennifer Parker</td>
-                                                                                <td class="col-xs-4"><small>Basera Indian Resto</small></td>
-                                                                                <td class="col-xs-3"><b>88</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Lorraine Baines</td>
-                                                                                <td><small>Il Vicoleto</small></td>
-                                                                                <td><b>75</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Goldie Wilson</td>
-                                                                                <td><small>Parikrama</small></td>
-                                                                                <td><b>55</b></td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td>You</td>
-                                                                                <td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>
-                                                                                <td>43</td>
-                                                                            </tr>
+                                                                        <table class="table table-striped innerTable" id="leader-scout">
+                                                                           
                                                                         </table>
                                                                     </div>
                                                                 </td>
@@ -303,27 +225,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-5">Jennifer Parker</td>
-                                                                                <td class="col-xs-4"><small>Basera Indian Resto</small></td>
-                                                                                <td class="col-xs-3"><b>88</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Lorraine Baines</td>
-                                                                                <td><small>Il Vicoleto</small></td>
-                                                                                <td><b>75</b></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>Goldie Wilson</td>
-                                                                                <td><small>Parikrama</small></td>
-                                                                                <td><b>55</b></td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td>You</td>
-                                                                                <td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>
-                                                                                <td>43</td>
-                                                                            </tr>
+                                                                        <table class="table table-striped innerTable" id="leader-king">
                                                                         </table>
                                                                     </div>
                                                                 </td>
@@ -399,149 +301,8 @@
                                                     <li><a href="#">King Maker</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <h2 class="heading2 serverApp text-left">Server Appreciation Program at Your Restaurant</h2>
-                                                <div class="table-responsive">
-                                                    <table class="table leaderBoardTable">
-                                                        <thead>
-                                                            <tr>
-                                                                <td class="tableHeader bgColorOrange"><div class="pull-left">SERVER SUPERSTAR</div><div class="pull-right">$500</div></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-6">Marty Mc Fly</td>
-                                                                                <td class="col-xs-2">112</td>
-                                                                                <td class="col-xs-4">Sep, 2016</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>George Mc Fly</td>
-                                                                                <td>112</td>
-                                                                                <td>Sep, 2016</td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td colspan="3">You reached 43 at the end of the competition.</td>
-                                                                            </tr>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="table-responsive">
-                                                    <table class="table leaderBoardTable">
-                                                        <thead>
-                                                            <tr>
-                                                                <td class="tableHeader bgColorVoilet"><div class="pull-left">SERVER SPEEDSTER</div><div class="pull-right">$1000</div></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-6">Jennifer Parker</td>
-                                                                                <td class="col-xs-2">112</td>
-                                                                                <td class="col-xs-4">Sep 23, 2016</td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td colspan="3">You reached 43 at the end of the competition.</td>
-                                                                            </tr>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <h2 class="heading2 serverApp text-left">Annual New York City Rewards 2016</h2>
-                                                <div class="table-responsive">
-                                                    <table class="table leaderBoardTable">
-                                                        <thead>
-                                                            <tr>
-                                                                <td class="tableHeader bgColorGreen"><div class="pull-left">LOCAL HERO </div><div class="pull-right">$2500</div></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-6">Emmett Brown</td>
-                                                                                <td class="col-xs-2">112</td>
-                                                                                <td class="col-xs-4">Sep, 2016</td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td colspan="3">You reached 43 at the end of the competition.</td>
-                                                                            </tr>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="table-responsive">
-                                                    <table class="table leaderBoardTable">
-                                                        <thead>
-                                                            <tr>
-                                                                <td class="tableHeader bgColorRed"><div class="pull-left">TALENT SCOUT </div><div class="pull-right">$2500</div></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-6">Biff Tannen</td>
-                                                                                <td class="col-xs-2">112</td>
-                                                                                <td class="col-xs-4">Sep, 2016</td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td colspan="3">You reached 43 at the end of the competition.</td>
-                                                                            </tr>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="table-responsive">
-                                                    <table class="table leaderBoardTable">
-                                                        <thead>
-                                                            <tr>
-                                                                <td class="tableHeader bgColorBlue"><div class="pull-left">KING MAKER</div><div class="pull-right">$2500</div></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-striped innerTable">
-                                                                            <tr>
-                                                                                <td class="col-xs-6">Lorraine Baines</td>
-                                                                                <td class="col-xs-2">1200<sup>PTS</sup></td>
-                                                                                <td class="col-xs-4">2016</td>
-                                                                            </tr>
-                                                                            <tr class="tableFooter">
-                                                                                <td colspan="3">You reached 43 at the end of the competition.</td>
-                                                                            </tr>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                            <div class="col-sm-9" id="past-winners">
+                                                
                                             </div>
                                         </div>
                                     </div>
