@@ -392,11 +392,11 @@
                                         <div class="row marginNone">
                                             <div class="col-sm-3">
                                                 <ul class="pastWinnersUl">
-                                                    <li><a href="#" class="active">Server Superstar</a></li>
-                                                    <li><a href="#">Server Speedster</a></li>
-                                                    <li><a href="#">Local Hero</a></li>
-                                                    <li><a href="#">Talent Scout</a></li>
-                                                    <li><a href="#">King Maker</a></li>
+                                                    <li class="active"><a href="#server_superstar">Server Superstar</a></li>
+                                                    <li><a href="#server_speedster">Server Speedster</a></li>
+                                                    <li><a href="#local_hero">Local Hero</a></li>
+                                                    <li><a href="#talent_scout">Talent Scout</a></li>
+                                                    <li><a href="#king_maker">King Maker</a></li>
                                                 </ul>
                                             </div>
                                             <div class="col-sm-9">
@@ -405,7 +405,7 @@
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
-                                                                <td class="tableHeader bgColorOrange"><div class="pull-left">SERVER SUPERSTAR</div><div class="pull-right">$500</div></td>
+                                                                <td class="tableHeader bgColorOrange" id="server_superstar"><div class="pull-left">SERVER SUPERSTAR</div><div class="pull-right">$500</div></td>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -437,7 +437,7 @@
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
-                                                                <td class="tableHeader bgColorVoilet"><div class="pull-left">SERVER SPEEDSTER</div><div class="pull-right">$1000</div></td>
+                                                                <td class="tableHeader bgColorVoilet" id="server_speedster"><div class="pull-left">SERVER SPEEDSTER</div><div class="pull-right">$1000</div></td>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -465,7 +465,7 @@
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
-                                                                <td class="tableHeader bgColorGreen"><div class="pull-left">LOCAL HERO </div><div class="pull-right">$2500</div></td>
+                                                                <td class="tableHeader bgColorGreen" id="local_hero"><div class="pull-left">LOCAL HERO </div><div class="pull-right">$2500</div></td>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -492,7 +492,7 @@
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
-                                                                <td class="tableHeader bgColorRed"><div class="pull-left">TALENT SCOUT </div><div class="pull-right">$2500</div></td>
+                                                                <td class="tableHeader bgColorRed" id="talent_scout"><div class="pull-left">TALENT SCOUT </div><div class="pull-right">$2500</div></td>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -519,7 +519,7 @@
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
-                                                                <td class="tableHeader bgColorBlue"><div class="pull-left">KING MAKER</div><div class="pull-right">$2500</div></td>
+                                                                <td class="tableHeader bgColorBlue" id="king_maker"><div class="pull-left">KING MAKER</div><div class="pull-right">$2500</div></td>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -688,5 +688,59 @@
           Staff.enrollCustomers();
         });
     </script>
+    <script type="text/javascript">
+        function onScroll() {
+            var scrollPos = $(document).scrollTop();
+            var faqpos = $('#PastWinners').offset().top;
+            if (scrollPos >= faqpos && scrollPos < $('#PastWinners').height() - $('ul.pastWinnersUl').height() || scrollPos > $('#PastWinners').height() - $('ul.pastWinnersUl').height()) {
+                $('ul.pastWinnersUl').css({
+                    'position': 'fixed',
+                    'top': 0
+                });
+            }else{
+                $('ul.pastWinnersUl').css({
+                    'position': '',
+                    'top': 0
+                });
+            }
+            $('ul.pastWinnersUl li').each(function () {
+                var currLink = $(this);
+                var refElement = $(currLink.find('a').attr("href"));
+                if ($('#server_superstar').offset().top < scrollPos) {
+                    
+                    if (refElement.position().top <= scrollPos - 30) {
+                        $('ul.pastWinnersUl li').removeClass("active");
+                        currLink.prev('li').addClass("active");
+                        console.log(currLink.attr('class'));
+                    }
+                    else{
+                        currLink.removeClass("active");
+                    }
+                }
+            });
+        }
+        $(document).ready(function () {
+            
+            $(window).scroll(function () {
+                onScroll();
+            });
+            $("ul.pastWinnersUl li").click(function (e) {
+                e.preventDefault();
+                var target = $(e.currentTarget).find('a').attr('href');
+                $('html, body').stop().animate({
+                    'scrollTop': $(target).offset().top - 10
+                }, 500, 'swing', function () {
+                });
+            });
+            $("[href='#PastWinners']").click(function () {
+                $('html, body').stop().animate({
+                    'scrollTop': 0
+                }, 500, 'swing', function () {
+                });
+            });
+        })
+    </script>
+
+
 </body>
 </html>
