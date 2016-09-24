@@ -1,6 +1,6 @@
 window.Staff ={} ;
 Staff.version=1;
-window.apiUrl = "http://munch-local.com/wapi";
+window.apiUrl = "https://demoapi.munchado.com/wapi";
 authenticationToken();
 function getToken(){
     $.ajax({
@@ -497,7 +497,7 @@ Staff.getDaysFromTwoDates = function(firstDate){
 Staff.leaderboard = function(page){
     var d = new Date();
     var m = d.getMonth();
-    var month = ($('#leader-month').val()) ? $('#leader-month').val() : m + 1;
+    var month = ($('#month').val()) ? $('#month').val() : m + 1;
     $.ajax({
         url:apiUrl+'/servers/leaderboard?token='+$.jStorage.get('oauth.token')+'&month='+month,
         cache: false,
@@ -514,14 +514,12 @@ Staff.leaderboard = function(page){
                                }else{
                                 tbody +='<td></td></tr>';
                                } 
-              });
-             tbody +='<tr class="tableFooter"><td>You</td>';
-                 tbody +='<td>You</td>';
-                 tbody +='<td>57 to go</td>';
-                 tbody +='<td>43</td></tr>';                                                                                             
-            }else{
-                $('.no-record').empty().html('No Record Found');
+              });                                                                                             
             }
+            tbody +='<tr class="tableFooter"><td>You</td>';
+                 tbody +='<td>You</td>';
+                 tbody +='<td>100 to go</td>';
+                 tbody +='<td>0</td></tr>';
             $('#leader-superstar').empty().append(tbody);
              var tbody = "";
             if(response.speedster.length > 0){
@@ -529,14 +527,12 @@ Staff.leaderboard = function(page){
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
                                tbody +='<td>Joined '+ Staff.getDaysFromTwoDates(value['date']) +' days ago</td>';
                                tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
-              });
-             tbody +='<tr class="tableFooter"><td>You</td>';
-                 tbody +='<td>You</td>';
-                 tbody +='<td>Joined 21 days ago</td>';
-                 tbody +='<td>43</td></tr>';                                                                                             
-            }else{
-                $('.no-record').empty().html('No Record Found');
+              });                                                                                             
             }
+            tbody +='<tr class="tableFooter"><td>You</td>';
+                 tbody +='<td>You</td>';
+                 tbody +='<td>Joined 0 days ago</td>';
+                 tbody +='<td>0</td></tr>';
             $('#leader-speedster').empty().append(tbody);
             var tbody = "";
             if(response.local_hero.length > 0){
@@ -544,14 +540,12 @@ Staff.leaderboard = function(page){
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
                                tbody +='<td>'+ value['restaurant_name'] +'</td>';
                                tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
-              });
-             tbody +='<tr class="tableFooter">';
-                 tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>';
-                 tbody +='<td>43</td></tr>';                                                                                             
-            }else{
-                $('.no-record').empty().html('No Record Found');
+              });                                                                                            
             }
+            tbody +='<tr class="tableFooter">';
+                 tbody +='<td>You</td>';
+                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br></td>';
+                 tbody +='<td>0</td></tr>'; 
             $('#leader-hero').empty().append(tbody);
             var tbody = "";
             if(response.talent_scout.length > 0){
@@ -559,14 +553,12 @@ Staff.leaderboard = function(page){
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
                                tbody +='<td>'+ value['restaurant_name'] +'</td>';
                                tbody +='<td>'+ value['total_referals'] +'</td></tr>';     
-              });
-             tbody +='<tr class="tableFooter">';
-                 tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>';
-                 tbody +='<td>43</td></tr>';                                                                                             
-            }else{
-                $('.no-record').empty().html('No Record Found');
+              });                                                                                             
             }
+            tbody +='<tr class="tableFooter">';
+                 tbody +='<td>You</td>';
+                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br></td>';
+                 tbody +='<td>0</td></tr>';
             $('#leader-scout').empty().append(tbody);
             var tbody = "";
             if(response.king_maker.length > 0){
@@ -574,54 +566,62 @@ Staff.leaderboard = function(page){
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
                                tbody +='<td>'+ value['restaurant_name'] +'</td>';
                                tbody +='<td>'+ value['total_points'] +'</td></tr>';     
-              });
-             tbody +='<tr class="tableFooter">';
-                 tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br>Dina Davis</td>';
-                 tbody +='<td>43</td></tr>';                                                                                             
-            }else{
-                $('.no-record').empty().html('No Record Found');
+              });                                                                                             
             }
+            tbody +='<tr class="tableFooter">';
+                 tbody +='<td>You</td>';
+                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br></td>';
+                 tbody +='<td>0</td></tr>';
             $('#leader-king').empty().append(tbody);
-            var twinners = "";
-            twinners +='<h2 class="heading2 serverApp text-left">Server Appreciation Program at Your Restaurant</h2>';
-            twinners +='<div class="table-responsive">';
-            twinners +='<table class="table leaderBoardTable">';
-            if(response.king_maker.length > 0){
+            var sstar = "";
+            var sster = "";
+            var lhero = "";
+            var tscout = "";
+            var kmaker = "";
+            if(response.past_winners.length > 0){
              $.each(response.past_winners,function(item,value){        
                    if(value['reward'] == 'superstar'){
-                      var cclass = 'bgColorOrange';
-                      var amount = '$500';
+                      sstar +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
+                      sstar +='<td class="col-xs-2">'+ value['earning'] +'</td>';
+                      sstar +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
                    }
                    if(value['reward'] == 'speedster'){
-                      var cclass = 'bgColorVoilet';
-                      var amount = '$1000';
+                      sster +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
+                      sster +='<td class="col-xs-2">'+ value['earning'] +'</td>';
+                      sster +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
                    }
                    if(value['reward'] == 'local_hero'){
-                      var cclass = 'bgColorGreen';
-                      var amount = '$2500';
+                      lhero +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
+                      lhero +='<td class="col-xs-2">'+ value['earning'] +'</td>';
+                      lhero +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
                    }
                    if(value['reward'] == 'talent_scout'){
-                      var cclass = 'bgColorRed';
-                      var amount = '$2500';
+                      tscout +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
+                      tscout +='<td class="col-xs-2">'+ value['earning'] +'</td>';
+                      tscout +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
                    }
                    if(value['reward'] == 'king_maker'){
-                       var cclass = 'bgColorBlue';
-                       var amount = '$2500';
+                      kmaker +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
+                      kmaker +='<td class="col-xs-2">'+ value['earning'] +'<sup>PTS</sup></td>';
+                      kmaker +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
                    }
-                   twinners +='<thead><tr><td class="tableHeader '+cclass+'"><div class="pull-left">SERVER '+ value['reward'] +'</div><div class="pull-right">'+ amount +'</div></td></tr></thead>';
-                   twinners +='<tbody><tr><td><div class="table-responsive"><table class="table table-striped innerTable">';
-                   twinners +='<tr><td class="col-xs-6">'+ value['server_name'] +'</td>';
-                   twinners +='<td class="col-xs-2">'+ value['earning'] +'</td>';
-                   twinners +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
-                   twinners +='<tr class="tableFooter">';
-                   twinners +='<td colspan="3">You reached 43 at the end of the competition.</td></tr></table></div></td></tr></tbody>';
-              });
-                   twinners +='</table></div>';                                                                                                
-            }else{
-                $('.no-record').empty().html('No Record Found');
+              });                                                                                                  
             }
-            $('#past-winners').empty().append(twinners);
+            sstar +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
+            sstar +='</table></div>';
+            sster +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
+            sster +='</table></div>';
+            lhero +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
+            lhero +='</table></div>';
+            tscout +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
+            tscout +='</table></div>';
+            kmaker +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
+            kmaker +='</table></div>';
+            $('#super-star').empty().append(sstar);
+            $('#speed-ster').empty().append(sster);
+            $('#local-hero').empty().append(lhero);
+            $('#talent-scout').empty().append(tscout);
+            $('#king-maker').empty().append(kmaker);
         },
         error: function() {}
     });

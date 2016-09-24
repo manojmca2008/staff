@@ -112,10 +112,10 @@ table.innerTable tr>td:last-child{border-left:1px solid #b8b8b8;border-radius:0 
 table.innerTable tr.tableFooter>td:last-child{border-left:none;}
 table.innerTable tr>td.dinaDevistd{font:normal 16.5px/18px Arial;padding:0 8px;}
 table.innerTable tr>td.dinaDevistd>small{font:normal 10.5px/12px Arial}
-.pastWinnersUl{margin:109px 0 0 0;padding:0;width:100%;display:block;list-style:none;font:bold 22px/26px Arial;text-align:left;}
+.pastWinnersUl{margin:109px 0 0 0;padding:0;width:100%;display:block;list-style:none;font:bold 22px/26px Arial;text-align:left;position:absolute;}
 .pastWinnersUl>li+li{margin-top:10px;}
 .pastWinnersUl>li>a{color:rgba(75,75,75,.5);text-decoration:none;letter-spacing:-1px;}
-.pastWinnersUl>li>a:hover, .pastWinnersUl>li>a.active{color:rgba(75,75,75,1);text-decoration:none;}
+.pastWinnersUl>li>a:hover, .pastWinnersUl>li.active>a{color:rgba(75,75,75,1);text-decoration:none;}
 .paginationBox{margin:0px auto;overflow:hidden;width:100%;max-width:193px;border-radius:5px; background:#f8f8fa;padding: 5px 0 4px;}
 .paginationBox a, .paginationBox ul{display:block;float:left;}
 .paginationBox ul{list-style:none;margin:0px 18px;padding:0px;}
@@ -157,6 +157,9 @@ footer .address a{display: inline;}
 .blacksection {background: #515151;overflow: hidden;padding: 10px 0;color: #fff;font-size: .6875em;padding-right: 10px;}
 .blacksection .fleft {padding-top: 13px;}
 /*-----------------------------*/
+
+#PastWinners{position:relative}
+#PastWinners > .row > .col-sm-3{position:static}
 
 /*--Tablet--*/
 @media screen and (max-width:1024px){

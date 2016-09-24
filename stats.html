@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Dine &amp; More Staff Srogram</title>
+    <title>Dine &amp; More Server Appreciation Program</title>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://d1egl6u4i6ch33.cloudfront.net/assets/css/font_style.css" rel="stylesheet">
@@ -26,6 +26,37 @@
                 Staff.customerList(1);
                 $(".logoutBtn").click(function () {
                     Staff.logout();
+                });
+                $("#radio-1").hide();
+                $("#optionsRadios2").hide();
+                $(".radioLabel").hide()
+                $("#month").prop("disabled", false);
+                $("#leader-board").click(function () {
+                    Staff.leaderboard();
+                    Staff.customerList(1);
+                    $("#radio-1").hide();
+                    $("#optionsRadios2").hide();
+                    $(".radioLabel").hide()
+                    $("#month").prop("disabled", false);
+                    $("#month option:eq(0)").prop("selected", true);
+                });
+                $("#your-stats").click(function () {
+                    Staff.leaderboard();
+                    Staff.customerList(1);
+                    $("#radio-1").show();
+                    $("#optionsRadios2").show();
+                    $(".radioLabel").show()
+                    $("#month").prop("disabled", true);
+                    $("#month option:eq(0)").prop("selected", true);
+                });
+                $("#past-winner").click(function () {
+                    Staff.leaderboard();
+                    Staff.customerList(1);
+                    $("#radio-1").hide();
+                    $("#optionsRadios2").hide();
+                    $(".radioLabel").hide()
+                    $("#month").prop("disabled", false);
+                    $("#month option:eq(0)").prop("selected", true);
                 });
             });
         } else {
@@ -73,13 +104,13 @@
                                 <!-- Nav tabs -->
                                 <div class="tabListContainer">
                                     <ul class="navTabs" role="tablist">
-                                        <li role="presentation"><a href="#Leaderboard" aria-controls="Leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
-                                        <li role="presentation" class="active"><a href="#YourStats" aria-controls="Your Stats" role="tab" data-toggle="tab">Your Stats</a></li>
-                                        <li role="presentation"><a href="#PastWinners" aria-tabcontrols="Past Winners" role="tab" data-toggle="tab">Past Winners</a></li>
+                                        <li role="presentation" class="active"><a href="#Leaderboard" aria-controls="Leaderboard" role="tab" data-toggle="tab" id="leader-board">Leaderboard</a></li>
+                                        <li role="presentation"><a href="#YourStats" aria-controls="Your Stats" role="tab" data-toggle="tab" id="your-stats">Your Stats</a></li>
+                                        <li role="presentation"><a href="#PastWinners" aria-tabcontrols="Past Winners" role="tab" data-toggle="tab" id="past-winner">Past Winners</a></li>
                                     </ul>
                                 </div>
                                 <div class="radioButtonDIv">
-                                    <div class="radio">
+                                    <div class="radio" id="radio-1">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
                                             <label class="radioLabel" for="optionsRadios1"><span></span></label>
@@ -105,7 +136,7 @@
                                 </div>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane" id="Leaderboard">
+                                    <div role="tabpanel" class="tab-pane active" id="Leaderboard">
                                         <h2 class="heading2 serverApp">Server Appreciation Program at Your Restaurant</h2>
                                         <div class="row marginNone">
                                             <div class="col-md-6">
@@ -236,7 +267,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane active" id="YourStats">
+                                    <div role="tabpanel" class="tab-pane" id="YourStats">
                                         <h2 class="heading2 serverApp">Summary</h2>
                                         <div class="row marginNone white">
                                             <div class="col-sm-2"></div>
@@ -294,15 +325,112 @@
                                         <div class="row marginNone">
                                             <div class="col-sm-3">
                                                 <ul class="pastWinnersUl">
-                                                    <li><a href="#" class="active">Server Superstar</a></li>
-                                                    <li><a href="#">Server Speedster</a></li>
-                                                    <li><a href="#">Local Hero</a></li>
-                                                    <li><a href="#">Talent Scout</a></li>
-                                                    <li><a href="#">King Maker</a></li>
+                                                    <li class="active"><a href="#server_superstar">Server Superstar</a></li>
+                                                    <li><a href="#server_speedster">Server Speedster</a></li>
+                                                    <li><a href="#local_hero">Local Hero</a></li>
+                                                    <li><a href="#talent_scout">Talent Scout</a></li>
+                                                    <li><a href="#king_maker">King Maker</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="col-sm-9" id="past-winners">
-                                                
+                                            <div class="col-sm-9">
+                                                <h2 class="heading2 serverApp text-left">Server Appreciation Program at Your Restaurant</h2>
+                                                <div class="table-responsive">
+                                                    <table class="table leaderBoardTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="tableHeader bgColorOrange" id="server_superstar"><div class="pull-left">SERVER SUPERSTAR</div><div class="pull-right">$500</div></td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-striped innerTable" id="super-star">
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table leaderBoardTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="tableHeader bgColorVoilet" id="server_speedster"><div class="pull-left">SERVER SPEEDSTER</div><div class="pull-right">$1000</div></td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-striped innerTable" id="speed-ster">
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <h2 class="heading2 serverApp text-left">Annual New York City Rewards 2016</h2>
+                                                <div class="table-responsive">
+                                                    <table class="table leaderBoardTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="tableHeader bgColorGreen" id="local_hero"><div class="pull-left">LOCAL HERO </div><div class="pull-right">$2500</div></td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-striped innerTable" id="local-hero">
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table leaderBoardTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="tableHeader bgColorRed" id="talent_scout"><div class="pull-left">TALENT SCOUT </div><div class="pull-right">$2500</div></td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-striped innerTable" id="talent-scout">
+                                
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table leaderBoardTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="tableHeader bgColorBlue" id="king_maker"><div class="pull-left">KING MAKER</div><div class="pull-right">$2500</div></td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-striped innerTable" id="king-maker">
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -420,6 +548,7 @@
             Staff.logout();
         });
         $('#month').change(function () {
+            Staff.leaderboard();
             Staff.customerList(1);
         });
         $(".arrowLeft").click(function (e) {
@@ -449,5 +578,61 @@
           Staff.enrollCustomers();
         });
     </script>
+    <script type="text/javascript">
+        function onScroll() {
+            var scrollPos = $(document).scrollTop();
+            var faqpos = $('#PastWinners').offset().top;
+            if (scrollPos >= faqpos && scrollPos < $('#PastWinners').height() - $('ul.pastWinnersUl').height() || scrollPos > $('#PastWinners').height() - $('ul.pastWinnersUl').height()) {
+                $('ul.pastWinnersUl').css({
+                    'position': 'fixed',
+                    'top': 0
+                });
+            }else{
+                $('ul.pastWinnersUl').css({
+                    'position': '',
+                    'top': 0
+                });
+            }
+            $('ul.pastWinnersUl li').each(function () {
+                var currLink = $(this);
+                var refElement = $(currLink.find('a').attr("href"));
+                if ($('#server_superstar').offset()){
+                if ($('#server_superstar').offset().top < scrollPos) {
+                    
+                    if (refElement.position().top <= scrollPos) {
+                        $('ul.pastWinnersUl li').removeClass("active");
+                        currLink.prev('li').addClass("active");
+                        //console.log(currLink.attr('class'));
+                    }
+                    else{
+                        currLink.removeClass("active");
+                    }
+                }
+            }
+            });
+        }
+        $(document).ready(function () {
+            
+            $(window).scroll(function () {
+                onScroll();
+            });
+            $("ul.pastWinnersUl li").click(function (e) {
+                e.preventDefault();
+                var target = $(e.currentTarget).find('a').attr('href');
+                $('html, body').stop().animate({
+                    'scrollTop': $(target).offset().top - 10
+                }, 500, 'swing', function () {
+                });
+            });
+            $("[href='#PastWinners']").click(function () {
+                $('html, body').stop().animate({
+                    'scrollTop': 0
+                }, 500, 'swing', function () {
+                });
+            });
+        })
+    </script>
+
+
 </body>
 </html>
