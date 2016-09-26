@@ -634,15 +634,15 @@ $(document).ready(function () {
     });
     $("#enroll-more-customers").click(function () {
         $('#myModal5').modal('hide');
-       $('#friendemails_tagsinput').remove();
+       //$('#friendemails_tagsinput').remove();
         setTimeout(function () {
             $("#myModal4").modal('show')
         }, 800);
     });
     $( "#enroll-popup" ).click(function() { 
-        if( $('#friendemails_tagsinput').length ){
-           $('#friendemails_tagsinput').remove();
-        }
+        // if( $('#friendemails_tagsinput').length ){
+        //    $('#friendemails_tagsinput').remove();
+        // }
     $(".error-message-enroll").addClass("hide");
     delete window.inviteTags;
     setTimeout(function(){
