@@ -28,15 +28,13 @@
                     Staff.logout();
                 });
                 $("#radio-1").hide();
-                $("#optionsRadios2").hide();
-                $(".radioLabel").hide()
+                $("#check-hide").hide();
                 $("#month").prop("disabled", false);
                 $("#leader-board").click(function () {
                     Staff.leaderboard();
                     Staff.customerList(1);
                     $("#radio-1").hide();
-                    $("#optionsRadios2").hide();
-                    $(".radioLabel").hide()
+                    $("#check-hide").hide();
                     $("#month").prop("disabled", false);
                     $("#month option:eq(0)").prop("selected", true);
                 });
@@ -44,8 +42,7 @@
                     Staff.leaderboard();
                     Staff.customerList(1);
                     $("#radio-1").show();
-                    $("#optionsRadios2").show();
-                    $(".radioLabel").show()
+                    $("#check-hide").show();
                     $("#month").prop("disabled", true);
                     $("#month option:eq(0)").prop("selected", true);
                 });
@@ -53,8 +50,7 @@
                     Staff.leaderboard();
                     Staff.customerList(1);
                     $("#radio-1").hide();
-                    $("#optionsRadios2").hide();
-                    $(".radioLabel").hide()
+                    $("#check-hide").hide();
                     $("#month").prop("disabled", false);
                     $("#month option:eq(0)").prop("selected", true);
                 });
@@ -119,8 +115,10 @@
                                     </div>
                                     <div class="radio">
                                         <div class="selectTime text-left">
+                                            <div id="check-hide">
                                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
                                             <label class="radioLabel" for="optionsRadios2"><span></span></label>
+                                        </div>
                                             <div class="dropdown">
                                                 <select class="form-control" id="month" disabled="disabled">
                                                     <option value="">Select Month</option>
@@ -333,8 +331,8 @@
                                                 </ul>
                                             </div>
                                             <div class="col-sm-9">
-                                                <h2 class="heading2 serverApp text-left">Server Appreciation Program at Your Restaurant</h2>
-                                                <div class="table-responsive">
+                                                <h2 class="heading2 serverApp text-left server-program">Server Appreciation Program at Your Restaurant</h2>
+                                                <div class="table-responsive server-super-star">
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
@@ -353,7 +351,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="table-responsive">
+                                                <div class="table-responsive server-speed-ster">
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
@@ -372,8 +370,8 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <h2 class="heading2 serverApp text-left">Annual New York City Rewards 2016</h2>
-                                                <div class="table-responsive">
+                                                <h2 class="heading2 serverApp text-left hide">Annual New York City Rewards 2016</h2>
+                                                <div class="table-responsive hide">
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
@@ -392,7 +390,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="table-responsive">
+                                                <div class="table-responsive hide">
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>
@@ -412,7 +410,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="table-responsive">
+                                                <div class="table-responsive hide">
                                                     <table class="table leaderBoardTable">
                                                         <thead>
                                                             <tr>

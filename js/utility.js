@@ -606,11 +606,10 @@ Staff.leaderboard = function(page){
                       kmaker +='<td class="col-xs-2">'+ value['earning'] +'<sup>PTS</sup></td>';
                       kmaker +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
                    }
-              });                                                                                                  
-            }
-            sstar +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
+              });
+            sstar +='<tr class="tableFooter"><td colspan="3">You reached '+response.server_details.monthwise_customers['total_customers']+' at the end of the competition.</td></tr>';
             sstar +='</table></div>';
-            sster +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
+            sster +='<tr class="tableFooter"><td colspan="3">You reached '+response.server_details.monthwise_customers['total_customers']+' at the end of the competition.</td></tr>';
             sster +='</table></div>';
             lhero +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
             lhero +='</table></div>';
@@ -618,6 +617,10 @@ Staff.leaderboard = function(page){
             tscout +='</table></div>';
             kmaker +='<tr class="tableFooter"><td colspan="3">You reached 0 at the end of the competition.</td></tr>';
             kmaker +='</table></div>';
+                $('.server-super-star,.server-speed-ster,.server-program,.pastWinnersUl').removeClass('hide');                                                                                                  
+            }else{
+                $('.server-super-star,.server-speed-ster,.server-program,.pastWinnersUl').addClass('hide');
+            }
             $('#super-star').empty().append(sstar);
             $('#speed-ster').empty().append(sster);
             $('#local-hero').empty().append(lhero);

@@ -124,6 +124,9 @@ table.innerTable tr>td.dinaDevistd>small{font:normal 10.5px/12px Arial}
 .paginationBox ul .active{font-weight:bold;}
 .paginationBox a{color:#4b4b4b; text-decoration:none;}
 .paginationBox>a{padding:5px;}
+div#check-hide {
+    display: inline-block;
+}
 /*-----------------------------*/
 footer .fleft {float: left;}
 footer .fright {float: right!important;}
