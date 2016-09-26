@@ -175,6 +175,7 @@ Staff.enrollCustomers=function (){
         contentType: "application/json; charset=utf-8",
         type: 'post',
         success: function(response) {
+            response.success = true;
             if(response.success == true){
                 $('.processingImg').addClass('hide');
                 $("#myModal4").modal('hide')
@@ -351,18 +352,6 @@ Staff.validateEnrollEmail = function(value){
     }else{
         hasError = true;
     }
-    // if ($.trim(email) === "") {
-    //     $(".error-message").html(Munch.getMessage('LOGIN_ERROR_EMAIL_FORMAT')).fadeIn("slow").removeClass("hide");
-    //     email.closest("div").find(".error-message").removeClass("hide").html('Hey, you forgot something');
-    //     hasError = true;
-    // } else {
-    //     if (!emailFormat.test(email)){
-    //         email.closest("div").find(".error-message").removeClass("hide").html('That don\'t look like any e-mail I ever seen. Maybe the "@" or the "." are in the wrong spot. This isn\'t cubism, put things where they belong!');
-    //         hasError = true;
-    //     } else {
-    //         email.closest("div").find(".error-message").addClass("hide");
-    //     }
-    // }
     return hasError;
 };
 Staff.validatePhone = function(){
@@ -535,7 +524,6 @@ Staff.leaderboard = function(page){
               });                                                                                             
             }
             var total = 100-response.server_details.monthwise_customers['total_customers'];
-            console.log(response.server_details.monthwise_customers['total_customers']);
             tbody +='<tr class="tableFooter"><td>You</td>';
                  tbody +='<td>'+total+' to go</td>';
                  tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td></tr>';
@@ -562,7 +550,7 @@ Staff.leaderboard = function(page){
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd"><small class="text-capitalize">Customer name: '+response.server_details.yearwise_customers['server_name']+'</small><br></td>';
+                 tbody +='<td class="dinaDevistd"><small class="text-capitalize">Customer name: </small><br>'+response.server_details.yearwise_customers['server_name']+'</td>';
                  tbody +='<td>'+response.server_details.yearwise_customers['total_customers']+'</td></tr>'; 
             $('#leader-hero').empty().append(tbody);
             var tbody = "";
@@ -575,7 +563,7 @@ Staff.leaderboard = function(page){
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: '+response.server_details.yearwise_friends['server_name']+'</small><br></td>';
+                 tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: </small><br>'+response.server_details.yearwise_friends['server_name']+'</td>';
                  tbody +='<td>'+response.server_details.yearwise_friends['total_referals']+'</td></tr>';
             $('#leader-scout').empty().append(tbody);
             var tbody = "";
@@ -588,7 +576,7 @@ Staff.leaderboard = function(page){
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: '+response.server_details.yearwise_points['server_name']+'</small><br></td>';
+                 tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: </small><br>'+response.server_details.yearwise_points['server_name']+'</td>';
                  tbody +='<td>'+response.server_details.yearwise_points['total_points']+'</td></tr>';
             $('#leader-king').empty().append(tbody);
             var sstar = "";
