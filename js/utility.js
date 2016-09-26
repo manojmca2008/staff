@@ -175,7 +175,6 @@ Staff.enrollCustomers=function (){
         contentType: "application/json; charset=utf-8",
         type: 'post',
         success: function(response) {
-            response.success = true;
             if(response.success == true){
                 $('.processingImg').addClass('hide');
                 $("#myModal4").modal('hide')

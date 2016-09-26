@@ -615,7 +615,6 @@
             });
         }
 $(document).ready(function () {
-    
     $(window).scroll(function () {
         onScroll();
     });
@@ -640,7 +639,7 @@ $(document).ready(function () {
         }, 800);
     });
 $( "#enroll-popup" ).click(function() { 
-    $(".error-message-enroll").addClass("hide");
+    //$(".error-message-enroll").addClass("hide");
     delete window.inviteTags;
     setTimeout(function(){
         inputTags();
