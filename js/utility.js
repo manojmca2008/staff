@@ -498,8 +498,9 @@ Staff.leaderboard = function(page){
     var d = new Date();
     var m = d.getMonth();
     var month = ($('#month').val()) ? $('#month').val() : m + 1;
+    var year = d.getFullYear();
     $.ajax({
-        url:apiUrl+'/servers/leaderboard?token='+$.jStorage.get('oauth.token')+'&month='+month,
+        url:apiUrl+'/servers/leaderboard?token='+$.jStorage.get('oauth.token')+'&month='+month+'&year='+year,
         cache: false,
         type: 'get',
         dataType: 'json',
@@ -516,10 +517,11 @@ Staff.leaderboard = function(page){
                                } 
               });                                                                                             
             }
+            var total = 100-response.server_details.monthwise_customers['total_customers'];
+            console.log(response.server_details.monthwise_customers['total_customers']);
             tbody +='<tr class="tableFooter"><td>You</td>';
-                 tbody +='<td>You</td>';
-                 tbody +='<td>100 to go</td>';
-                 tbody +='<td>0</td></tr>';
+                 tbody +='<td>'+total+' to go</td>';
+                 tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td></tr>';
             $('#leader-superstar').empty().append(tbody);
              var tbody = "";
             if(response.speedster.length > 0){
@@ -530,9 +532,8 @@ Staff.leaderboard = function(page){
               });                                                                                             
             }
             tbody +='<tr class="tableFooter"><td>You</td>';
-                 tbody +='<td>You</td>';
-                 tbody +='<td>Joined 0 days ago</td>';
-                 tbody +='<td>0</td></tr>';
+                 tbody +='<td>Joined '+Staff.getDaysFromTwoDates(response.server_details.monthwise_customers['date'])+' days ago</td>';
+                 tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td></tr>';
             $('#leader-speedster').empty().append(tbody);
             var tbody = "";
             if(response.local_hero.length > 0){
@@ -544,8 +545,8 @@ Staff.leaderboard = function(page){
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br></td>';
-                 tbody +='<td>0</td></tr>'; 
+                 tbody +='<td class="dinaDevistd"><small class="text-capitalize">Customer name: '+response.server_details.yearwise_customers['server_name']+'</small><br></td>';
+                 tbody +='<td>'+response.server_details.yearwise_customers['total_customers']+'</td></tr>'; 
             $('#leader-hero').empty().append(tbody);
             var tbody = "";
             if(response.talent_scout.length > 0){
@@ -557,8 +558,8 @@ Staff.leaderboard = function(page){
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br></td>';
-                 tbody +='<td>0</td></tr>';
+                 tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: '+response.server_details.yearwise_friends['server_name']+'</small><br></td>';
+                 tbody +='<td>'+response.server_details.yearwise_friends['total_referals']+'</td></tr>';
             $('#leader-scout').empty().append(tbody);
             var tbody = "";
             if(response.king_maker.length > 0){
@@ -570,8 +571,8 @@ Staff.leaderboard = function(page){
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
-                 tbody +='<td class="dinaDevistd"><small>Customer name:</small><br></td>';
-                 tbody +='<td>0</td></tr>';
+                 tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: '+response.server_details.yearwise_points['server_name']+'</small><br></td>';
+                 tbody +='<td>'+response.server_details.yearwise_points['total_points']+'</td></tr>';
             $('#leader-king').empty().append(tbody);
             var sstar = "";
             var sster = "";
