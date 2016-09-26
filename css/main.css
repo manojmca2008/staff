@@ -49,7 +49,7 @@ label{font-weight:normal;}
 .tnc{text-decoration:underline;color:#4b4b4b;}
 .registerNowBtn{background:#000;color:#fff;text-transform:uppercase;font-weight:bold;padding:9px 25px;border:none;box-shadow:none;border-radius:6px;min-width:160px;}
 .modalPara{width:100%;max-width:550px;margin:0 auto;}
-.error-message, .error-message-login, .error-message-dym, .error-message-login-dym{color:red;padding-top:5px;text-align:left;}
+.error-message,.error-message-enroll, .error-message-login, .error-message-dym, .error-message-login-dym{color:red;padding-top:5px;text-align:left;}
 /*-------------------------------------------------*/
 .logged .navbar-toggle .icon-bar {background-color: #000;}
 .bgColorOrange{background:#f18b08;}
@@ -211,3 +211,20 @@ nav.navigation ul li a{border-radius:0;padding:8px;}
     .earnExtraMoneyTxt {margin: 60px 0px 45px;line-height:50px;}
     
 }
+
+.textareadiv{display: block;
+    width: 100%;
+    resize: none;
+    background-color: #fff;
+    height: 80px;
+    color: #999999;	
+    font: 0.875em/16px Arial, Helvetica, sans-serif;
+    border: 1px solid #CFCFCF;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.075) inset;
+    border-radius: 5px;}
+.textareadiv input{background:inherit;color:#999999;display:inline;line-height:21px;margin:5px 0 0 5px;border:0;outline:0;}
+.email_addTag {float: left;}
+.textareadiv .tag{padding:0 14px 0 5px;background-color:#f5f5f5;float:left;line-height:19px;border-radius:3px;border:solid 1px #c4c4c4;color:#4b4b4b;margin:5px 0 0 5px; position:relative;}
+.textareadiv .tag:hover{background-color: #dddddd;}
+.textareadiv .tag a{font-weight:bold;}
+.textareadiv .close_removeTag:after {content: '+';position: absolute;right: 4px;top: 3px;font-size: 20px;color:#ff8208;width: 11px;height: 11px;line-height: 11px;-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);transform: rotate(45deg);}

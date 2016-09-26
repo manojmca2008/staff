@@ -105,6 +105,7 @@ Staff.registration=function (){
                 $('.processingImg').addClass('hide');
                 $("#myModal").modal('hide');
                 $("#myModal3").modal('show');
+                $.jStorage.set('dinecode',response.code);
                 $.jStorage.set('isLoggedIn',true);
                 setTimeout(function(){
                     $("#myModal3").modal('hide');
@@ -143,6 +144,7 @@ Staff.login=function (){
             if(response.success == true){
                 $('.processingImg').addClass('hide');
                 $('#myModal2').hide();
+                $.jStorage.set('dinecode',response.code);
                 $.jStorage.set('isLoggedIn',true);
                 window.location.href = 'stats.html'
             }
@@ -157,17 +159,19 @@ Staff.login=function (){
     });
 };
 Staff.enrollCustomers=function (){
-    var hasError = Staff.validateEnrollEmail();
-     if(hasError) {
+    var emails = window.inviteTags.data("tagsInput").getTags();
+     if(emails == "") {
          return false;
      }
     $('.processingImg').removeClass('hide');
-    var emails = {
-            'email': $("input[name=enroll_email]").val(),
+    var data = {
+            'dinecode': $.jStorage.get('dinecode'),
+            'emails': emails.toString(),
+            'token': $.jStorage.get('oauth.token')
         };
     $.ajax({
-        url:apiUrl+'/servers/enrollcustomers',
-        data: JSON.stringify(emails),
+        url:apiUrl+'/user/serveruserregistration',
+        data: JSON.stringify(data),
         contentType: "application/json; charset=utf-8",
         type: 'post',
         success: function(response) {
@@ -227,11 +231,12 @@ $( "#login-popup" ).click(function() {
     $("input[name=login_email]").val('');
     $("input[name=login_password]").val('');
 });
-$( "#enroll-popup" ).click(function() {
-    $(".error-message").addClass("hide");
-    //$(".error-message-login-dym").addClass("hide");
-    $("input[name=enroll_email]").val('');
-});
+// $( "#enroll-popup" ).click(function() {
+//     staff.inviteTags();
+//     $(".error-message").addClass("hide");
+//     //$(".error-message-login-dym").addClass("hide");
+//     $("input[name=enroll_email]").val('');
+// });
 Staff.validateFirstName = function(){
     var hasError = false;
     var firstName = $("input[name=first_name]");
@@ -330,22 +335,34 @@ Staff.validateloginEmail = function(){
     }
     return hasError;
 };
-Staff.validateEnrollEmail = function(){
+Staff.validateEnrollEmail = function(value){
     var hasError = false,
-        email = $("input[name=enroll_email]");
+        email = value;
+        console.log(value);
     var emailFormat = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-
-    if ($.trim(email.val()) === "") {
-        email.closest("div").find(".error-message").removeClass("hide").html('Hey, you forgot something');
-        hasError = true;
-    } else {
-        if (!emailFormat.test(email.val())) {
-            email.closest("div").find(".error-message").removeClass("hide").html('That don\'t look like any e-mail I ever seen. Maybe the "@" or the "." are in the wrong spot. This isn\'t cubism, put things where they belong!');
+    if(email !==''){
+        if(!emailFormat.test(email)){
+            $(".error-message-enroll").html('That don\'t look like any e-mail I ever seen. Maybe the "@" or the "." are in the wrong spot. This isn\'t cubism, put things where they belong!').fadeIn("slow").removeClass("hide");
             hasError = true;
-        } else {
-            email.closest("div").find(".error-message").addClass("hide");
+        }else{
+            $(".error-message-enroll").html('').fadeIn("slow").addClass("hide");
+            return false;
         }
+    }else{
+        hasError = true;
     }
+    // if ($.trim(email) === "") {
+    //     $(".error-message").html(Munch.getMessage('LOGIN_ERROR_EMAIL_FORMAT')).fadeIn("slow").removeClass("hide");
+    //     email.closest("div").find(".error-message").removeClass("hide").html('Hey, you forgot something');
+    //     hasError = true;
+    // } else {
+    //     if (!emailFormat.test(email)){
+    //         email.closest("div").find(".error-message").removeClass("hide").html('That don\'t look like any e-mail I ever seen. Maybe the "@" or the "." are in the wrong spot. This isn\'t cubism, put things where they belong!');
+    //         hasError = true;
+    //     } else {
+    //         email.closest("div").find(".error-message").addClass("hide");
+    //     }
+    // }
     return hasError;
 };
 Staff.validatePhone = function(){
