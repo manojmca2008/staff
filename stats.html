@@ -124,7 +124,7 @@
                                         </div>
                                             <div class="dropdown">
                                                 <select class="form-control" id="month" disabled="disabled">
-                                                    <option value="">Select Month</option>
+                                                    <option disabled>Select Month</option>
                                                     <option value='8'>August</option>
                                                     <option value='9'>September</option>
                                                     <option value='10'>October</option>
@@ -507,6 +507,7 @@
                                 <input id="friendemails" size="50" type="text" class="tags email" value="" />
                                     <p class="error-message-enroll new-location-msg hide">Hey, you forgot something</p></div>
                             </div>
+                            <img src="images/processing.gif" alt="" class="processingImg hide">
                             <div class="row text-center">
                                 &nbsp;<br>&nbsp;<br>
                                 <button type="submit" class="registerNowBtn enrollBtn">SUBMIT</button>
@@ -634,17 +635,23 @@ $(document).ready(function () {
     });
     $("#enroll-more-customers").click(function () {
         $('#myModal5').modal('hide');
+        $('#friendemails').val(''); 
+        if( $('#friendemails').length ){
+           $('#friendemails_tagsinput').remove();
+        }
+    $(".error-message-enroll").addClass("hide");
        //$('#friendemails_tagsinput').remove();
         setTimeout(function () {
             $("#myModal4").modal('show')
+            inputTags();
         }, 800);
     });
-    $( "#enroll-popup" ).click(function() { 
-        // if( $('#friendemails_tagsinput').length ){
-        //    $('#friendemails_tagsinput').remove();
-        // }
+    $( "#enroll-popup" ).click(function() {
+        $('#friendemails').val(''); 
+        if( $('#friendemails').length ){
+           $('#friendemails_tagsinput').remove();
+        }
     $(".error-message-enroll").addClass("hide");
-    delete window.inviteTags;
     setTimeout(function(){
         inputTags();
     },600);
