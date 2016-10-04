@@ -524,8 +524,8 @@ Staff.leaderboard = function(page){
             }
             var total = 100-response.server_details.monthwise_customers['total_customers'];
             tbody +='<tr class="tableFooter"><td>You</td>';
-                 tbody +='<td>'+total+' to go</td>';
-                 tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td></tr>';
+                 tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td>';
+                 tbody +='<td>'+total+' to go</td></tr>';
             $('#leader-superstar').empty().append(tbody);
              var tbody = "";
             if(response.speedster.length > 0){
