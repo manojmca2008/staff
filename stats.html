@@ -25,6 +25,7 @@
     <script type="text/javascript">
         if ($.jStorage.get('isLoggedIn') && $.jStorage.get('isLoggedIn') == true) {
             $(document).ready(function () {
+                window.currentMonth = 10;
                 Staff.leaderboard();
                 Staff.customerList(1);
                 $(".logoutBtn").click(function () {
@@ -123,14 +124,21 @@
                                             <label class="radioLabel" for="optionsRadios2"><span></span></label>
                                         </div>
                                             <div class="dropdown">
-                                                <select class="form-control" id="month" disabled="disabled">
-                                                    <option disabled>Select Month</option>
-                                                    <option value='8'>August</option>
-                                                    <option value='9'>September</option>
-                                                    <option value='10'>October</option>
-                                                    <option value='11'>November</option>
-                                                    <option value='12'>December</option>
-                                                </select>
+                                            <script type="text/javascript">
+                                             var month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                                             var codeMonth = "";
+                                             codeMonth += "<select class='form-control' id='month' disabled='disabled'>";
+                                             codeMonth += "<option disabled>Select Month</option>"          
+                                             for(var i = 7; i <= 11; i++){
+                                                if(window.currentMonth == i+1){
+                                                 codeMonth += "<option value='" + (i + 1) + "' selected >" + month[i] + "</option>";
+                                                }else{
+                                                codeMonth += "<option value='" + (i + 1) + "' >" + month[i] + "</option>";
+                                                }
+                                             }
+                                             codeMonth += "</select>";
+                                             document.write(codeMonth);
+                                             </script>
                                             </div>
                                         </div>
                                     </div>

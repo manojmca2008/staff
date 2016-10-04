@@ -2,6 +2,9 @@ window.Staff ={} ;
 Staff.version=1;
 window.apiUrl = "http://munch-local.com/wapi";
 authenticationToken();
+var d = new Date();
+var m = d.getMonth();
+window.currentMonth = m + 1;
 function getToken(){
     $.ajax({
             url: apiUrl + "/auth/token",
@@ -498,6 +501,19 @@ Staff.getDaysFromTwoDates = function(firstDate){
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
     return diffDays;
+}
+Staff.getMonthDropdown = function(){
+    var month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", 
+                        "October", "November", "December");
+               var codeMonth = "";
+               codeMonth += "<select class='form-control' id='month' disabled='disabled'>";
+               codeMonth += "<option disabled>Select Month</option>"          
+                    
+               for(var i = 7; i <= 11; i++){
+                 codeMonth += "<option value='" + (i + 1) + "' >" + month[i] + "</option>";
+               }
+               codeMonth += "</select>";
+               $('#dropdown').empty().append(codeMonth);
 }
 Staff.leaderboard = function(page){
     var d = new Date();
