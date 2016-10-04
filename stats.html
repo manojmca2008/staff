@@ -580,7 +580,9 @@
         });
         $('input:radio[name=optionsRadios]').change(function () {
             if (this.value == 'option1') {
+                $( "#month option:selected" ).val('');
                 $("#month").prop("disabled", true);
+                Staff.customerList(1);
             }
             if (this.value == 'option2') {
                 $("#month").prop("disabled", false);
