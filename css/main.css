@@ -50,6 +50,7 @@ label{font-weight:normal;}
 .registerNowBtn{background:#000;color:#fff;text-transform:uppercase;font-weight:bold;padding:9px 25px;border:none;box-shadow:none;border-radius:6px;min-width:160px;}
 .modalPara{width:100%;max-width:550px;margin:0 auto;}
 .error-message,.error-message-enroll, .error-message-login, .error-message-dym, .error-message-login-dym{color:red;padding-top:5px;text-align:left;}
+.table>thead+tbody>tr>td.comisover{padding-top:10px;font-size:18px; line-height:22px;white-space:normal;}
 /*-------------------------------------------------*/
 .logged .navbar-toggle .icon-bar {background-color: #000;}
 .bgColorOrange{background:#f18b08;}

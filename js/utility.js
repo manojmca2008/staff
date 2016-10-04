@@ -1,6 +1,6 @@
 window.Staff ={} ;
 Staff.version=1;
-window.apiUrl = "http://munch-local.com/wapi";
+window.apiUrl = "https://demoapi.munchado.com/wapi";
 authenticationToken();
 function getToken(){
     $.ajax({
