@@ -582,6 +582,9 @@ Staff.leaderboard = function(page){
         dataType: 'json',
         success: function(response) {
             var tbody = "";
+            if(response.superstar.length >= 0 && response.superstar.length < 3){
+                var total = 3 - response.superstar.length;
+            }
             if(response.superstar.length > 0){
              $.each(response.superstar,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -589,9 +592,16 @@ Staff.leaderboard = function(page){
                                if(value['total_customers'] > 100){
                                     tbody +='<td>$500</td></tr>';
                                }else{
-                                tbody +='<td></td></tr>';
+                                tbody +='<td>&nbsp</td></tr>';
                                } 
               });                                                                                             
+            }
+            if(total > 0){
+                for (var i = 0; i < total; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
             }
             var total = 100-response.server_details.monthwise_customers['total_customers'];
             tbody +='<tr class="tableFooter"><td>You</td>';
@@ -599,6 +609,9 @@ Staff.leaderboard = function(page){
                  tbody +='<td>'+total+' to go</td></tr>';
             $('#leader-superstar').empty().append(tbody);
              var tbody = "";
+             if(response.speedster.length >= 0 && response.speedster.length < 3){
+                var stotal = 3 - response.speedster.length;
+            }
             if(response.speedster.length > 0){
              $.each(response.speedster,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -606,11 +619,21 @@ Staff.leaderboard = function(page){
                                tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
               });                                                                                             
             }
+            if(stotal > 0){
+                for (var i = 0; i < stotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
+            }
             tbody +='<tr class="tableFooter"><td>You</td>';
                  tbody +='<td>Joined '+Staff.getDaysFromTwoDates(response.server_details.monthwise_customers['date'])+' days ago</td>';
                  tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td></tr>';
             $('#leader-speedster').empty().append(tbody);
             var tbody = "";
+            if(response.local_hero.length >= 0 && response.local_hero.length < 3){
+                var ltotal = 3 - response.local_hero.length;
+            }
             if(response.local_hero.length > 0){
              $.each(response.local_hero,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -618,12 +641,22 @@ Staff.leaderboard = function(page){
                                tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
               });                                                                                            
             }
+            if(ltotal > 0){
+                for (var i = 0; i < ltotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
+            }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
                  tbody +='<td class="dinaDevistd"><small class="text-capitalize">Customer name: </small><br>'+response.server_details.yearwise_customers['server_name']+'</td>';
                  tbody +='<td>'+response.server_details.yearwise_customers['total_customers']+'</td></tr>'; 
             $('#leader-hero').empty().append(tbody);
             var tbody = "";
+            if(response.talent_scout.length >= 0 && response.talent_scout.length < 3){
+                var ttotal = 3 - response.talent_scout.length;
+            }
             if(response.talent_scout.length > 0){
              $.each(response.talent_scout,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -631,18 +664,35 @@ Staff.leaderboard = function(page){
                                tbody +='<td>'+ value['total_referals'] +'</td></tr>';     
               });                                                                                             
             }
+            if(ttotal > 0){
+                for (var i = 0; i < ttotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
+            }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
                  tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: </small><br>'+response.server_details.yearwise_friends['server_name']+'</td>';
                  tbody +='<td>'+response.server_details.yearwise_friends['total_referals']+'</td></tr>';
             $('#leader-scout').empty().append(tbody);
             var tbody = "";
+            if(response.king_maker.length >= 0 && response.king_maker.length < 3){
+                var ktotal = 3 - response.king_maker.length;
+            }
             if(response.king_maker.length > 0){
              $.each(response.king_maker,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
                                tbody +='<td>'+ value['restaurant_name'] +'</td>';
                                tbody +='<td>'+ value['total_points'] +'</td></tr>';     
               });                                                                                             
+            }
+            if(ktotal > 0){
+                for (var i = 0; i < ktotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';

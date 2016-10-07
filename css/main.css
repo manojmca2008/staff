@@ -232,3 +232,4 @@ nav.navigation ul li a{border-radius:0;padding:8px;}
     min-height: 273px;
 }
 .a-minheight table{margin:0}
+.a_nonebg_table{background:transparent!important;}
