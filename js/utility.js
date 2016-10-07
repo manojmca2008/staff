@@ -161,6 +161,37 @@ Staff.login=function (){
         }
     });
 };
+Staff.forgotPassword=function (){ console.log('data');
+    var hasError = Staff.validateForgotEmail();
+     if(hasError) {
+         return false;
+     }
+    $('.processingImg').removeClass('hide');
+    var data = {
+            'email': $("input[name=forgot_email]").val(),
+            'token': $.jStorage.get('oauth.token')
+        };
+    $.ajax({
+        url:apiUrl+'/servers/forgot-password/1',
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        type: 'post',
+        success: function(response) {
+            if(response.success == true){
+                $('.processingImg').addClass('hide');
+                $('#myModal2').hide();
+                window.location.href = 'stats.html'
+            }
+        },
+        error: function(response) {
+            $('.processingImg').addClass('hide');
+            response = $.parseJSON(response['responseText']);
+            var error = response["error"];
+            $('.error-message-forgot-dym').removeClass('hide');
+            $('.error-message-forgot-dym').empty().html(error);
+        }
+    });
+};
 Staff.enrollCustomers=function (){
     var emails = window.inviteTags.data("tagsInput").getTags();
      if(emails == "") {
@@ -216,6 +247,9 @@ $( ".registerBtn" ).click(function() {
 $( ".loginBtn" ).click(function() {
   Staff.login();
 });
+$( ".forgotBtn" ).click(function() {
+  Staff.forgotPassword();
+});
 
 $( "#register-popup" ).click(function() {
     $(".error-message").addClass("hide");
@@ -233,6 +267,9 @@ $( "#login-popup" ).click(function() {
     $(".error-message-login-dym").addClass("hide");
     $("input[name=login_email]").val('');
     $("input[name=login_password]").val('');
+    $("input[name=forgot_email]").val('');
+    $(".error-message-forgot").addClass("hide");
+    $(".error-message-forgot-dym").addClass("hide");
 });
 // $( "#enroll-popup" ).click(function() {
 //     staff.inviteTags();
@@ -338,6 +375,24 @@ Staff.validateloginEmail = function(){
     }
     return hasError;
 };
+Staff.validateForgotEmail = function(){
+    var hasError = false,
+        email = $("input[name=forgot_email]");
+    var emailFormat = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+    if ($.trim(email.val()) === "") {
+        email.closest("div").find(".error-message-forgot").removeClass("hide").html('Hey, you forgot something');
+        hasError = true;
+    } else {
+        if (!emailFormat.test(email.val())) {
+            email.closest("div").find(".error-message-forgot").removeClass("hide").html('That don\'t look like any e-mail I ever seen. Maybe the "@" or the "." are in the wrong spot. This isn\'t cubism, put things where they belong!');
+            hasError = true;
+        } else {
+            email.closest("div").find(".error-message-forgot").addClass("hide");
+        }
+    }
+    return hasError;
+};
 Staff.validateEnrollEmail = function(value){
     var hasError = false,
         email = value;
@@ -391,6 +446,7 @@ $("select[name=rest-name]").on('blur', $.proxy(Staff.validateRestaurantName, Sta
 $("input[name=password]").on('blur', $.proxy(Staff.validatePassword, Staff));
 $("input[name=login_password]").on('blur', $.proxy(Staff.validateLoginPassword, Staff));
 $("input[name=login_email]").on('blur', $.proxy(Staff.validateloginEmail, Staff));
+$("input[name=forgot_email]").on('blur', $.proxy(Staff.validateForgotEmail, Staff));
 $("input[name=phone]").on('blur', $.proxy(Staff.validatePhone, Staff));
 $("input[name=loyality_code]").on('blur', $.proxy(Staff.validateLoyaltyCode, Staff));
 
@@ -405,7 +461,6 @@ Staff.inputFormatter = function(){
 Staff.customerList = function(page){
     $.jStorage.set("page", page);
     var month = ($('#month').val()) ? $('#month').val() : '';
-    
     $.ajax({
         url:apiUrl+'/servers/customersList?token='+$.jStorage.get('oauth.token')+'&month='+month+'&page='+page,
         cache: false,
@@ -604,7 +659,7 @@ Staff.leaderboard = function(page){
                    if(value['reward'] == 'superstar'){
                       sstar +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
                       sstar +='<td class="col-xs-2">'+ value['earning'] +'</td>';
-                      sstar +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
+                      sstar +='<td class="col-xs-4">'+ value['created_at'].substr(3, 10); +'</td></tr>';
                    }
                    if(value['reward'] == 'speedster'){
                       sster +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';

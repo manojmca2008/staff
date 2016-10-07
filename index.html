@@ -115,7 +115,7 @@
                                     <h3>server superstar</h3>
                                     <p>Register 100+ customers every month to keep earning $500 per month.</p>
                                     <div class="priceDiv bgColorOrange">
-                                        Win $ 500
+                                        Win $500
                                         <img src="images/left-offer-img-orange.png" alt="" class="leftOfferImg">
                                         <img src="images/right-offer-img-orange.png" alt="" class="righttOfferImg">
                                     </div>
@@ -126,7 +126,7 @@
                                     <h3>Server Speedster</h3>
                                     <p>Be the first server to register 100 customers at your restaurant to earn $1,000.</p>
                                     <div class="priceDiv bgColorVoilet">
-                                        Win $ 1,000
+                                        Win $1,000
                                         <img src="images/left-offer-img-voilet.png" alt="" class="leftOfferImg">
                                         <img src="images/right-offer-img-voilet.png" alt="" class="righttOfferImg">
                                     </div>
@@ -145,7 +145,7 @@
                                     <h3>Local Hero*</h3>
                                     <p>Register the most customers in New York City to earn $2,500.</p>
                                     <div class="priceDiv bgColorGreen">
-                                        Win $ 2,500
+                                        Win $2,500
                                         <img src="images/left-offer-img-green.png" alt="" class="leftOfferImg">
                                         <img src="images/right-offer-img-green.png" alt="" class="righttOfferImg">
                                     </div>
@@ -156,7 +156,7 @@
                                     <h3>talent scout</h3>
                                     <p>Register the customer who refers the most friends to earn $2,500.</p>
                                     <div class="priceDiv bgColorRed">
-                                        Win $ 2,500
+                                        Win $2,500
                                         <img src="images/left-offer-img-red.png" alt="" class="leftOfferImg">
                                         <img src="images/right-offer-img-red.png" alt="" class="righttOfferImg">
                                     </div>
@@ -167,7 +167,7 @@
                                     <h3>king maker</h3>
                                     <p>Register the customer who earns the most loyalty points in a year to earn $2,500.</p>
                                     <div class="priceDiv bgColorBlue">
-                                        Win $ 2,500
+                                        Win $2,500
                                         <img src="images/left-offer-img-blue.png" alt="" class="leftOfferImg">
                                         <img src="images/right-offer-img-blue.png" alt="" class="righttOfferImg">
                                     </div>
@@ -321,6 +321,7 @@
                             &nbsp;<br>
                             <img src="images/processing.gif" alt="" class="processingImg hide">
                         </div>
+                        
                         <div class="row text-center">
                             &nbsp;<br>
                             <button type="submit" class="registerNowBtn loginBtn">Sign In</button>
@@ -360,6 +361,45 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal6">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modalHeader">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title modalTitle">Sign In </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="registrationDiv">
+
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-right">
+                                <label for="recipient-name" class="control-label">Email Address</label>
+                            </div>
+                            <div class="col-sm-8"><input type="text" name="forgot_email" id="email" class="form-control"><p class="error-message-forgot new-location-msg hide">Hey, you forgot something</p></div>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col-sm-4 text-right"></div>
+                            <div class="col-sm-8"><p class="error-message-forgot-dym hide"></p></div>
+                        </div>
+                        <div class="row text-center">
+                            &nbsp;<br>
+                            <img src="images/processing.gif" alt="" class="processingImg hide">
+                        </div>
+                        <div class="row text-center">
+                            &nbsp;<br>
+                            <button type="submit" class="registerNowBtn forgotBtn">Submit</button>
+                            <a href="javascript:void(0);" class="custom-login" id="go_back"> Go Back</a>
+                        </div>
+                        <div class="row text-center">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modalFooter">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -383,6 +423,18 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#forgot_password").click(function () {
+                $('#myModal2').modal('hide');
+                setTimeout(function () {
+                    $("#myModal6").modal('show')
+                }, 300);
+            });
+            $("#go_back").click(function () {
+                $('#myModal6').modal('hide');
+                setTimeout(function () {
+                    $("#myModal2").modal('show')
+                }, 300);
+            });
             $("#register_Now").click(function () {
                 $('#myModal2').modal('hide');
                 setTimeout(function () {
