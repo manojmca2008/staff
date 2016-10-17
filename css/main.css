@@ -49,8 +49,8 @@ label{font-weight:normal;}
 .tnc{text-decoration:underline;color:#4b4b4b;}
 .registerNowBtn{background:#000;color:#fff;text-transform:uppercase;font-weight:bold;padding:9px 25px;border:none;box-shadow:none;border-radius:6px;min-width:160px;}
 .modalPara{width:100%;max-width:550px;margin:0 auto;}
-.error-message,.error-message-enroll, .error-message-login, .error-message-dym, .error-message-login-dym{color:red;padding-top:5px;text-align:left;}
 .table>thead+tbody>tr>td.comisover{padding-top:10px;font-size:18px; line-height:22px;white-space:normal;}
+.error-message,.error-message-enroll, .error-message-login, .error-message-forgot, .error-message-dym, .error-message-login-dym, .error-message-forgot-dym{color:red;padding-top:5px;text-align:left;}
 /*-------------------------------------------------*/
 .logged .navbar-toggle .icon-bar {background-color: #000;}
 .bgColorOrange{background:#f18b08;}
@@ -86,7 +86,7 @@ label.radioLabel{width:16px;height:16px;min-width:15px;min-height:16px;border-ra
 label.radioLabel span{width:8px;height:8px;border-radius:8px;background:#253b67;margin:3px 0 0 3px;display:none;}
 .radioButtonDIv input[type="radio"]:checked + label span{display:block;}
 .heading2{font:bold 22px/28px Arial;}
-.serverApp{margin:45px 0 25px;}
+.serverApp{margin:35px 0 25px;}
 .summaryBox{border-radius:6px;padding:20px;max-width: 300px;margin: 0 auto;}
 .upperDiv{font:normal 18px/24px Arial;}
 .lowerDiv{font:bold 24px/30px Arial;}
@@ -229,3 +229,8 @@ nav.navigation ul li a{border-radius:0;padding:8px;}
 .textareadiv .tag:hover{background-color: #dddddd;}
 .textareadiv .tag a{font-weight:bold;}
 .textareadiv .close_removeTag:after {content: '+';position: absolute;right: 4px;top: 3px;font-size: 20px;color:#ff8208;width: 11px;height: 11px;line-height: 11px;-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);transform: rotate(45deg);}
+.a-minheight > div.col-md-6{
+    min-height: 273px;
+}
+.a-minheight table{margin:0}
+.a_nonebg_table{background:transparent!important;}

@@ -2,6 +2,9 @@ window.Staff ={} ;
 Staff.version=1;
 window.apiUrl = "https://demoapi.munchado.com/wapi";
 authenticationToken();
+var d = new Date();
+var m = d.getMonth();
+window.currentMonth = m + 1;
 function getToken(){
     $.ajax({
             url: apiUrl + "/auth/token",
@@ -158,6 +161,37 @@ Staff.login=function (){
         }
     });
 };
+Staff.forgotPassword=function (){ console.log('data');
+    var hasError = Staff.validateForgotEmail();
+     if(hasError) {
+         return false;
+     }
+    $('.processingImg').removeClass('hide');
+    var data = {
+            'email': $("input[name=forgot_email]").val(),
+            'token': $.jStorage.get('oauth.token')
+        };
+    $.ajax({
+        url:apiUrl+'/servers/forgot-password/1',
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        type: 'post',
+        success: function(response) {
+            if(response.success == true){
+                $('.processingImg').addClass('hide');
+                $('#myModal2').hide();
+                window.location.href = 'stats.html'
+            }
+        },
+        error: function(response) {
+            $('.processingImg').addClass('hide');
+            response = $.parseJSON(response['responseText']);
+            var error = response["error"];
+            $('.error-message-forgot-dym').removeClass('hide');
+            $('.error-message-forgot-dym').empty().html(error);
+        }
+    });
+};
 Staff.enrollCustomers=function (){
     var emails = window.inviteTags.data("tagsInput").getTags();
      if(emails == "") {
@@ -213,6 +247,9 @@ $( ".registerBtn" ).click(function() {
 $( ".loginBtn" ).click(function() {
   Staff.login();
 });
+$( ".forgotBtn" ).click(function() {
+  Staff.forgotPassword();
+});
 
 $( "#register-popup" ).click(function() {
     $(".error-message").addClass("hide");
@@ -230,6 +267,9 @@ $( "#login-popup" ).click(function() {
     $(".error-message-login-dym").addClass("hide");
     $("input[name=login_email]").val('');
     $("input[name=login_password]").val('');
+    $("input[name=forgot_email]").val('');
+    $(".error-message-forgot").addClass("hide");
+    $(".error-message-forgot-dym").addClass("hide");
 });
 // $( "#enroll-popup" ).click(function() {
 //     staff.inviteTags();
@@ -335,6 +375,24 @@ Staff.validateloginEmail = function(){
     }
     return hasError;
 };
+Staff.validateForgotEmail = function(){
+    var hasError = false,
+        email = $("input[name=forgot_email]");
+    var emailFormat = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+    if ($.trim(email.val()) === "") {
+        email.closest("div").find(".error-message-forgot").removeClass("hide").html('Hey, you forgot something');
+        hasError = true;
+    } else {
+        if (!emailFormat.test(email.val())) {
+            email.closest("div").find(".error-message-forgot").removeClass("hide").html('That don\'t look like any e-mail I ever seen. Maybe the "@" or the "." are in the wrong spot. This isn\'t cubism, put things where they belong!');
+            hasError = true;
+        } else {
+            email.closest("div").find(".error-message-forgot").addClass("hide");
+        }
+    }
+    return hasError;
+};
 Staff.validateEnrollEmail = function(value){
     var hasError = false,
         email = value;
@@ -388,6 +446,7 @@ $("select[name=rest-name]").on('blur', $.proxy(Staff.validateRestaurantName, Sta
 $("input[name=password]").on('blur', $.proxy(Staff.validatePassword, Staff));
 $("input[name=login_password]").on('blur', $.proxy(Staff.validateLoginPassword, Staff));
 $("input[name=login_email]").on('blur', $.proxy(Staff.validateloginEmail, Staff));
+$("input[name=forgot_email]").on('blur', $.proxy(Staff.validateForgotEmail, Staff));
 $("input[name=phone]").on('blur', $.proxy(Staff.validatePhone, Staff));
 $("input[name=loyality_code]").on('blur', $.proxy(Staff.validateLoyaltyCode, Staff));
 
@@ -402,7 +461,6 @@ Staff.inputFormatter = function(){
 Staff.customerList = function(page){
     $.jStorage.set("page", page);
     var month = ($('#month').val()) ? $('#month').val() : '';
-    
     $.ajax({
         url:apiUrl+'/servers/customersList?token='+$.jStorage.get('oauth.token')+'&month='+month+'&page='+page,
         cache: false,
@@ -499,6 +557,19 @@ Staff.getDaysFromTwoDates = function(firstDate){
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
     return diffDays;
 }
+Staff.getMonthDropdown = function(){
+    var month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", 
+                        "October", "November", "December");
+               var codeMonth = "";
+               codeMonth += "<select class='form-control' id='month' disabled='disabled'>";
+               codeMonth += "<option disabled>Select Month</option>"          
+                    
+               for(var i = 7; i <= 11; i++){
+                 codeMonth += "<option value='" + (i + 1) + "' >" + month[i] + "</option>";
+               }
+               codeMonth += "</select>";
+               $('#dropdown').empty().append(codeMonth);
+}
 Staff.leaderboard = function(page){
     var d = new Date();
     var m = d.getMonth();
@@ -511,6 +582,9 @@ Staff.leaderboard = function(page){
         dataType: 'json',
         success: function(response) {
             var tbody = "";
+            if(response.superstar.length >= 0 && response.superstar.length < 3){
+                var total = 3 - response.superstar.length;
+            }
             if(response.superstar.length > 0){
              $.each(response.superstar,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -518,16 +592,26 @@ Staff.leaderboard = function(page){
                                if(value['total_customers'] > 100){
                                     tbody +='<td>$500</td></tr>';
                                }else{
-                                tbody +='<td></td></tr>';
+                                tbody +='<td>&nbsp</td></tr>';
                                } 
               });                                                                                             
             }
+            if(total > 0){
+                for (var i = 0; i < total; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
+            }
             var total = 100-response.server_details.monthwise_customers['total_customers'];
             tbody +='<tr class="tableFooter"><td>You</td>';
-                 tbody +='<td>'+total+' to go</td>';
-                 tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td></tr>';
+                 tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td>';
+                 tbody +='<td>'+total+' to go</td></tr>';
             $('#leader-superstar').empty().append(tbody);
              var tbody = "";
+             if(response.speedster.length >= 0 && response.speedster.length < 3){
+                var stotal = 3 - response.speedster.length;
+            }
             if(response.speedster.length > 0){
              $.each(response.speedster,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -535,11 +619,21 @@ Staff.leaderboard = function(page){
                                tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
               });                                                                                             
             }
+            if(stotal > 0){
+                for (var i = 0; i < stotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
+            }
             tbody +='<tr class="tableFooter"><td>You</td>';
                  tbody +='<td>Joined '+Staff.getDaysFromTwoDates(response.server_details.monthwise_customers['date'])+' days ago</td>';
                  tbody +='<td>'+response.server_details.monthwise_customers['total_customers']+'</td></tr>';
             $('#leader-speedster').empty().append(tbody);
             var tbody = "";
+            if(response.local_hero.length >= 0 && response.local_hero.length < 3){
+                var ltotal = 3 - response.local_hero.length;
+            }
             if(response.local_hero.length > 0){
              $.each(response.local_hero,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -547,12 +641,22 @@ Staff.leaderboard = function(page){
                                tbody +='<td>'+ value['total_customers'] +'</td></tr>';     
               });                                                                                            
             }
+            if(ltotal > 0){
+                for (var i = 0; i < ltotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
+            }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
                  tbody +='<td class="dinaDevistd"><small class="text-capitalize">Customer name: </small><br>'+response.server_details.yearwise_customers['server_name']+'</td>';
                  tbody +='<td>'+response.server_details.yearwise_customers['total_customers']+'</td></tr>'; 
             $('#leader-hero').empty().append(tbody);
             var tbody = "";
+            if(response.talent_scout.length >= 0 && response.talent_scout.length < 3){
+                var ttotal = 3 - response.talent_scout.length;
+            }
             if(response.talent_scout.length > 0){
              $.each(response.talent_scout,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
@@ -560,18 +664,35 @@ Staff.leaderboard = function(page){
                                tbody +='<td>'+ value['total_referals'] +'</td></tr>';     
               });                                                                                             
             }
+            if(ttotal > 0){
+                for (var i = 0; i < ttotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
+            }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
                  tbody +='<td class="dinaDevistd text-capitalize"><small>Customer name: </small><br>'+response.server_details.yearwise_friends['server_name']+'</td>';
                  tbody +='<td>'+response.server_details.yearwise_friends['total_referals']+'</td></tr>';
             $('#leader-scout').empty().append(tbody);
             var tbody = "";
+            if(response.king_maker.length >= 0 && response.king_maker.length < 3){
+                var ktotal = 3 - response.king_maker.length;
+            }
             if(response.king_maker.length > 0){
              $.each(response.king_maker,function(item,value){        
                    tbody +='<tr><td class="text-capitalize">'+ value['server_name'] +'</td>';
                                tbody +='<td>'+ value['restaurant_name'] +'</td>';
                                tbody +='<td>'+ value['total_points'] +'</td></tr>';     
               });                                                                                             
+            }
+            if(ktotal > 0){
+                for (var i = 0; i < ktotal; i++) {
+                    tbody +='<tr><td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td>';
+                               tbody +='<td class="a_nonebg_table">&nbsp</td></tr>';
+                }
             }
             tbody +='<tr class="tableFooter">';
                  tbody +='<td>You</td>';
@@ -588,7 +709,7 @@ Staff.leaderboard = function(page){
                    if(value['reward'] == 'superstar'){
                       sstar +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
                       sstar +='<td class="col-xs-2">'+ value['earning'] +'</td>';
-                      sstar +='<td class="col-xs-4">'+ value['created_at'] +'</td></tr>';
+                      sstar +='<td class="col-xs-4">'+ value['created_at'].substr(3, 10); +'</td></tr>';
                    }
                    if(value['reward'] == 'speedster'){
                       sster +='<tr><td class="text-capitalize" class="col-xs-6">'+ value['server_name'] +'</td>';
