@@ -84,9 +84,10 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="hidden-xs hidden-sm"><a href="https://munchado.com/" target="_blank"><img src="images/munchadologo2.png" alt="" class="munchadoLogo2"></a></li>
+                                    <li class="hidden-xs hidden-sm hide"><a href="https://munchado.com/" target="_blank"><img src="images/munchadologo2.png" alt="" class="munchadoLogo2"></a></li>
                                     <li class="marNonMob"><a href="https://munchado.com/loyalty-points" target="_blank">Dine &amp; More</a></li>
                                     <li><a href="https://munchado.com" target="_blank">Munch Ado</a></li>
+                                    <li><a href="#" class="enrollCustomers" data-toggle="modal" data-target="#myModal6" id="enroll_customers">How to Enroll Customers</a></li>
                                     <li><a href="#" class="enroll" data-toggle="modal" data-target="#myModal4" id="enroll-popup">Enroll More Customers</a></li>
                                     <li><a href="#" class="logoutBtn"> Sign Out</a></li>
                                 </ul>
@@ -95,8 +96,8 @@
                     </header>
                     <div class="row text-center">
                         <h1 class="trackYourStatus">
-                            <span class="hidden-md hidden-lg visible-xs visible-sm"><a href="#"><img src="images/munchadologo2.png" alt="" class="munchadoLogo2"></a></span>
-                            <br class="hidden-md hidden-lg">
+                            <span class="show"><a href="https://munchado.com/" target="_blank"><img src="images/munchadologo2.png" alt="" class="munchadoLogo2"></a></span>
+                            <br>
                             <span>Track Your Stats</span>
                         </h1>
                         <div class="container-fluid">
@@ -196,7 +197,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 hide">
                                                 <div class="table-responsive">
                                                     <table class="table leaderBoardTable">
                                                         <thead>
@@ -569,6 +570,99 @@
                     <div class="row text-center">
                         &nbsp;<br>&nbsp;<br>
                         <button type="submit" class="registerNowBtn" id="enroll-more-customers">register more customers</button>
+                    </div>
+                </div>
+                <div class="modal-footer modalFooter">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal6">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header modalHeader">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title modalTitle howToEnroll">How to Enroll Customers</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="registrationDiv text-center">
+                        <p class="modalPara">
+                            If a customer has left their email address to join Dine &amp; More you can completing their enrollment online or with your phone.
+                        </p>
+                    </div>
+                    <div class="row">
+                       <div class="col-md-6">
+                           <div class="grayBoxBorder">
+                               <ul>
+                                   <li>
+                                       <div class="byPhone text-center">
+                                           <img src="images/by-phone-img.png" alt="By Phone" class="">
+                                           <strong class="show">By Phone</strong>
+                                       </div>
+                                   </li>
+                                   <li>
+                                       <div class="stepDiv">
+                                           <div class="stepBox">
+                                               <span>STEP</span>
+                                               <strong>1</strong>
+                                           </div>
+                                           Collect the email your customer left behind
+                                       </div>
+                                   </li>
+                                   <li>
+                                       <div class="stepDiv">
+                                           <div class="stepBox step2">
+                                               <span>STEP</span>
+                                               <strong>2</strong>
+                                           </div>
+                                           Text (201)345-7320 the following:<br>
+                                           <b>ENROLL TheriEmail [ServersCode]</b>
+                                       </div>
+                                   </li>
+                                   <li><span class="makesure">MAKE SURE</span> ENROLL is in all caps, you replace "TheirEmail" with the one they have provided and that there are spaces between ENROLL, TheirEmail and [ServersCode]</li>
+                               </ul>
+                           </div>
+                       </div>
+                        <div class="col-md-6">
+                            <div class="grayBoxBorder">
+                                <ul>
+                                    <li>
+                                        <div class="byPhone text-center">
+                                            <img src="images/online-img.png" alt="Online" class="onlinImg">
+                                            <strong class="show">Online</strong>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="stepDiv">
+                                            <div class="stepBox">
+                                                <span>STEP</span>
+                                                <strong>1</strong>
+                                            </div>
+                                            Collect the email your customer left behind
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="stepDiv">
+                                            <div class="stepBox step2">
+                                                <span>STEP</span>
+                                                <strong>2</strong>
+                                            </div>
+                                            Sign into Server.MunchAdo.com <br>and click <b class="enrollMoreCustomers">Enroll More Customers</b>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="stepDiv">
+                                            <div class="stepBox step3">
+                                                <span>STEP</span>
+                                                <strong>3</strong>
+                                            </div>
+                                            Enter the email or emails you've collected in the box provided.<br>Separate each email with a comma.
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="modal-footer modalFooter">

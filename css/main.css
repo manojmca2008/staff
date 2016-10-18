@@ -43,7 +43,22 @@ p.para1{font-size:15px;letter-spacing:.2px;}
 .rightDiv .getStartedDiv a{background:#f69722;}
 .modal{color:#4b4b4b;}
 .modalTitle{font:bold 26px/32px Arial;text-align:center;margin:30px auto 20px;letter-spacing:-1px;max-width:480px;}
+#myModal6 .howToEnroll{margin-bottom:0px;}
 .modalHeader,.modalFooter{border:none;}
+#myModal6 .modalHeader{padding-bottom:0px;}
+.grayBoxBorder{border:2px solid #ddd; border-radius:4px;padding:20px;margin-top:40px;min-height:495px;margin-bottom:25px;width:100%; max-width:360px; margin-left:auto;margin-right:auto;}
+.grayBoxBorder ul{margin:0px; padding:0px; list-style:none;width:100%;}
+.grayBoxBorder ul li{margin:0px 0px 25px 0px; padding:0px; list-style:none;width:100%;}
+.makesure{color:#ff821e;}
+.onlinImg{padding:15px 0px;}
+.enrollMoreCustomers{padding:2px 8px; background:#a4a4a4;color:#fff;border-radius:6px;}
+.byPhone>strong{display:block; font-size:18px;margin-top:20px;}
+.stepDiv{position:relative;width:100%;padding:5px 10px 0px 68px;min-height:55px;}
+.stepBox{width:52px;text-align:center;background:#fcb330;color:#fff;padding:7px 0px;border-radius:3px;position:absolute;left:0px;top:0px;}
+.stepBox.step2{background:#f18c08;}
+.stepBox.step3{background:#ef5e41;}
+.stepBox>span{font-size:10px;display:block;}
+.stepBox>span+strong{font-size:20px;display:block;}
 .registrationDiv{width:100%;max-width:670px; margin:0 auto;}
 label{font-weight:normal;}
 .tnc{text-decoration:underline;color:#4b4b4b;}
@@ -64,7 +79,8 @@ label{font-weight:normal;}
 .logged .w960{max-width:1000px;}
 .logged nav.navigation ul li a{color:#4b4b4b;}
 .logged nav.navigation ul{margin-left:-80px;vertical-align:bottom}
-.logged nav.navigation ul li a.enroll{color:#fff;background:#000;}
+.logged nav.navigation ul li a.enroll{color:#fff;background:#000;font-weight:600;}
+.logged nav.navigation ul li a.enrollCustomers{background:#ddd; margin-right:10px;font-weight:600;}
 .logged nav.navigation ul li a:focus,nav.navigation ul li a:focus{outline:none;}
 .logged nav.navigation ul li + li {margin-top:12px;}
 .logged nav.navigation ul li:first-child a:hover{background:none;}
@@ -184,6 +200,7 @@ nav.navigation ul{background:rgba(0,0,0,.65);margin: 0px;padding:0px;position:re
 nav.navigation ul:after{content:"";display:block;position:absolute;right:15px;top:-10px;border:5px solid rgba(0,0,0,0);border-bottom-color:rgba(0,0,0,.65);}
 .logged nav.navigation ul:after{border-bottom-color:#ddd;}
 nav.navigation ul li a{border-radius:0;padding:8px;}
+.logged nav.navigation ul li a.enrollCustomers{margin-right:0px;}
 .navbar-collapse{box-shadow:none;}
 .logoImg{margin-top:0;}
 .navbar-collapse{position:absolute;top:55px;left:0px;right:0px;padding-top:5px;}
