@@ -51,7 +51,7 @@ p.para1{font-size:15px;letter-spacing:.2px;}
 .grayBoxBorder ul li{margin:0px 0px 25px 0px; padding:0px; list-style:none;width:100%;}
 .makesure{color:#ff821e;}
 .onlinImg{padding:15px 0px;}
-.enrollMoreCustomers{padding:2px 8px; background:#a4a4a4;color:#fff;border-radius:6px;}
+.enrollMoreCustomers{padding:2px 8px; background:#a4a4a4;color:#fff;border-radius:6px;white-space:nowrap;}
 .byPhone>strong{display:block; font-size:18px;margin-top:20px;}
 .stepDiv{position:relative;width:100%;padding:5px 10px 0px 68px;min-height:55px;}
 .stepBox{width:52px;text-align:center;background:#fcb330;color:#fff;padding:7px 0px;border-radius:3px;position:absolute;left:0px;top:0px;}
@@ -230,6 +230,7 @@ nav.navigation ul li a{border-radius:0;padding:8px;}
 }
 @media screen and (max-width:320px){
     .earnExtraMoneyTxt {margin: 60px 0px 45px;line-height:50px;}
+    .grayBoxBorder{padding:20px 10px;}
     
 }
 
